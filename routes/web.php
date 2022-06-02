@@ -38,7 +38,9 @@ Route::get('/dashboard', [AdminController::class, 'show_dashboard']);
 Route::get('/logout', [AdminController::class, 'logout']);
 Route::post('/admin-dashboard', [AdminController::class, 'login']);
 
-//Admin - Category products routes
+
+
+//----------------------------------------------Admin - Category products routes------------------------------------------------//
 Route::get('/add-category-products', [CategoryController::class, 'add_Category_Products']);
 Route::get('/list-category-products', [CategoryController::class, 'list_Category_Products']);
 Route::get('/edit-category-products/{category_products_id}', [CategoryController::class, 'edit_Category_Products']);
@@ -49,9 +51,17 @@ Route::get('/unactive-category-products/{category_products_id}', [CategoryContro
 
 Route::post('/save-category-products', [CategoryController::class, 'save_Category_Products']); //them danh muc
 Route::post('/update-category-products/{category_products_id}', [CategoryController::class, 'update_Category_Products']);
+//------------------------------------------------------------------------------------------------------------------------------------//
 
-//admin - Products routes
+
+
+//----------------------------------------------Admin - Products routes-----------------------------------------------------------//
 Route::get('/add-products',[ProductsController::class,'add_Products']);
 Route::get('/list-products',[ProductsController::class,'list_Products']);
+Route::get('/edit-products/{products_id}', [ProductsController::class, 'edit_Products']);
 
-Route::post('/save-products', [ProductsController::class, 'save_Products']);
+
+Route::get('/active-products/{product_id}', [ProductsController::class, 'active_Products']);
+Route::get('/unactive-products/{product_id}', [ProductsController::class, 'unactive_Products']);
+
+Route::post('/save-products', [ProductsController::class, 'save_Products']); //them san pham

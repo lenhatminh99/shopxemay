@@ -33,8 +33,7 @@ class ProductsController extends Controller
 
         $get_image =$request->file('product_image');
         if($get_image){
-            $get_name_image = $get_image->getClientOriginalName();
-            $new_image = rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $new_image = rand(0,999).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/upload/product',$new_image);
             $data['product_image'] = $new_image;
             DB::table('tbl_products')->insert($data);
@@ -45,14 +44,29 @@ class ProductsController extends Controller
         return Redirect::to('add-products')->with('message', 'Thêm sản phẩm thành công!');
     }
 
-    public function active_Category_Products($category_products_id){
-        DB::table('tbl_category_products')->where('category_id', $category_products_id)->update(['category_status' => 0]);
-        return Redirect('/list-category-products');
+    //list products
+    public function list_Products(){
+        $list_products = DB::table('tbl_products')
+        ->join('tbl_category_products','tbl_category_products.category_id','=','tbl_products.category_id')->get();
+        $manager_products = view('admin.list_products')->with('list_products', $list_products);
+        return view('admin_layout')->with('admin.list_products', $manager_products);
     }
 
-    public function unactive_Category_Products($category_products_id){
-        DB::table('tbl_category_products')->where('category_id', $category_products_id)->update(['category_status' => 1]);
-        return Redirect('/list-category-products');
+    //edit products
+     public function edit_Products($product_id){
+        $cate_products = DB::table('tbl_category_products')->orderby('category_id','desc')->get();
+        $edit_products = DB::table('tbl_products')->where('product_id', $product_id)->get();
+        $manager_products = view('admin.edit_products')->with('edit_products', $edit_products);
+        return view('admin_layout')->with('admin.edit_products', $manager_products);
+    }
+
+    public function active_Products($products_id){
+        DB::table('tbl_products')->where('product_id', $products_id)->update(['product_status' => 0]);
+        return Redirect('/list-products')->with('message','Cập nhật thành công!');
+    }
+    public function unactive_Products($products_id){
+        DB::table('tbl_products')->where('product_id', $products_id)->update(['product_status' => 1]);
+        return Redirect('/list-products')->with('message','Cập nhật thành công!');
     }
 
 }

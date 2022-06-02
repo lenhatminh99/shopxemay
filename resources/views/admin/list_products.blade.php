@@ -3,7 +3,7 @@
      <div class="table-agile-info">
          <div class="panel panel-default">
              <div class="panel-heading">
-                 Liệt kê danh mục sản phẩm
+                 Liệt kê sản phẩm
              </div>
              @if (session('message'))
                  <div class="alert alert-success">
@@ -19,36 +19,45 @@
 
                                  </label>
                              </th>
-                             <th>Tên danh mục</th>
+                             <th>ID</th>
+                             <th>Tên sản phẩm</th>
+                             <th>Giá</th>
+                             <th>Hình ảnh</th>
+                             <th>Danh mục</th>
                              <th>Hiển thị</th>
                              <th style="width:30px;"></th>
                          </tr>
                      </thead>
                      <tbody>
-                         @foreach ($list_category_products as $key => $cate_pro)
+                         @foreach ($list_products as $key => $pro)
                              <tr>
                                  <td><label class="i-checks m-b-none"></label>
                                  </td>
-                                 <td>{{ $cate_pro->category_name }}</td>
+                                 <td>{{ $pro->product_id }}</td>
+                                 <td>{{ $pro->product_name }}</td>
+                                 <td>{{ $pro->product_price }}</td>
+                                 <td><img src="public/upload/product/{{ $pro->product_image }}" height="100px"
+                                         width="150px" /></td>
+                                 <td>{{ $pro->category_name }}</td>
                                  <td><span class="text-ellipsis">
                                          <?php
-                                         if ($cate_pro->category_status == 1) {
+                                         if ($pro->product_status == 1) {
                                              ?>
-                                         <a href="{{ URL::to('/active-category-products/' . $cate_pro->category_id) }}"><span
+                                         <a href="{{ URL::to('/active-products/' . $pro->product_id) }}"><span
                                                  class="fas fa-check"></span></a>
                                          <?php
                                          } else {
                                              ?>
-                                         <a href="{{ URL::to('/unactive-category-products/' . $cate_pro->category_id) }}"><span
+                                         <a href="{{ URL::to('/unactive-products/' . $pro->product_id) }}"><span
                                                  style="color:red; " class="fa fa-close"></span></a>
                                          <?php }
                                          ?>
                                      </span></td>
                                  <td>
                                      <a href="" class="active" ui-toggle-class="">
-                                         <a href="{{ URL::to('/edit-category-products/' . $cate_pro->category_id) }}"
+                                         <a href="{{ URL::to('/edit-products/' . $pro->product_id) }}"
                                              class="fa fa-pencil-square text-success text-active"></a>
-                                         <a href="{{ URL::to('/delete-category-products/' . $cate_pro->category_id) }}"
+                                         <a href="{{ URL::to('/delete-products/' . $pro->product_id) }}"
                                              class="fa fa-times text-danger text"></a></a>
                                  </td>
                              </tr>
