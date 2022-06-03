@@ -11,21 +11,32 @@ session_start();
 
 class CategoryController extends Controller
 {
+    public function Authlogin(){
+        $admin_id= Session::get('admin_id');
+        if($admin_id){
+            Redirect::to('dashboard');
+        }else{
+            Redirect::to('admin')->send();
+        }
+    }
     //------------------------CATEGORY PRODUCTS-------------------------------
 
     // return view trang them danh muc
     public function add_Category_Products(){
+        $this->Authlogin();
         return view('admin.add_category_products');
     }
 
     //danh sach danh muc
     public function list_Category_Products(){
+        $this->Authlogin();
         $list_category_products = DB::table('tbl_category_products')->get();
         $manager_category_products = view('admin.list_category_products')->with('list_category_products', $list_category_products);
         return view('admin_layout')->with('admin.list_category_products', $manager_category_products);
     }
 
     public function edit_Category_Products($category_products_id){
+        $this->Authlogin();
         $edit_category_products = DB::table('tbl_category_products')->where('category_id', $category_products_id)->get();
         $manager_category_products = view('admin.edit_category_products')->with('edit_category_products', $edit_category_products);
         return view('admin_layout')->with('admin.edit_category_products', $manager_category_products);

@@ -12,10 +12,19 @@ session_start();
 
 class ProductsController extends Controller
 {
+    public function Authlogin(){
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+            Redirect::to('dashboard');
+        }else{
+            Redirect::to('admin')->send();
+        }
+    }
     //----------------------------------PRODUCTS-----------------------------------
 
     // return trang Add products
     public function add_Products(){
+        $this->Authlogin();
         $cate_products = DB::table('tbl_category_products')->orderby('category_id','desc')->get();
 
         return view('admin.add_products')->with('cate_products', $cate_products);
@@ -46,6 +55,7 @@ class ProductsController extends Controller
 
     //list products
     public function list_Products(){
+        $this->Authlogin();
         $list_products = DB::table('tbl_products')
         ->join('tbl_category_products','tbl_category_products.category_id','=','tbl_products.category_id')->get();
         $manager_products = view('admin.list_products')->with('list_products', $list_products);
@@ -54,10 +64,35 @@ class ProductsController extends Controller
 
     //edit products
      public function edit_Products($product_id){
-        $cate_products = DB::table('tbl_category_products')->orderby('category_id','desc')->get();
+        $cate_products = DB::table('tbl_category_products')->get();
         $edit_products = DB::table('tbl_products')->where('product_id', $product_id)->get();
-        $manager_products = view('admin.edit_products')->with('edit_products', $edit_products);
-        return view('admin_layout')->with('admin.edit_products', $manager_products);
+        $manager_products = view('admin.edit_products')->with('edit_products', $edit_products)->with('cate_products', $cate_products);
+        return view('admin_layout')->with('admin.edit_products',$manager_products);
+    }
+
+    public function update_Products(Request $request,$product_id){
+        $data = array();
+        $data['product_name'] = $request -> product_name;
+        $data['category_id'] = $request -> cate_products;
+        $data['product_desc'] = $request -> product_desc;
+        $data['product_price'] = $request -> product_price;
+        $data['product_status'] = $request -> product_status;
+
+        $get_image =$request->file('product_image');
+        if($get_image){
+            $new_image = rand(0,999).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/upload/product',$new_image);
+            $data['product_image'] = $new_image;
+            DB::table('tbl_products')->where('product_id',$product_id)->update($data);
+            return Redirect::to('list-products')->with('message', 'Sửa sản phẩm thành công!');
+        }
+        DB::table('tbl_products')->where('product_id',$product_id)->update($data);
+        return Redirect::to('list-products')->with('message', 'Sửa sản phẩm thành công');
+    }
+
+    public function delete_Products($product_id){
+        DB::table('tbl_products')->where('product_id',$product_id)->delete();
+        return Redirect::to('list-products')->with('message','Xóa sản phẩm thành công!');
     }
 
     public function active_Products($products_id){

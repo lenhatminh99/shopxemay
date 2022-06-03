@@ -59,9 +59,11 @@ Route::post('/update-category-products/{category_products_id}', [CategoryControl
 Route::get('/add-products',[ProductsController::class,'add_Products']);
 Route::get('/list-products',[ProductsController::class,'list_Products']);
 Route::get('/edit-products/{products_id}', [ProductsController::class, 'edit_Products']);
+Route::get('/delete-products/{products_id}', [ProductsController::class, 'delete_Products']);
 
 
 Route::get('/active-products/{product_id}', [ProductsController::class, 'active_Products']);
 Route::get('/unactive-products/{product_id}', [ProductsController::class, 'unactive_Products']);
 
 Route::post('/save-products', [ProductsController::class, 'save_Products']); //them san pham
+Route::post('/update-products/{products_id}', [ProductsController::class, 'update_Products']);
