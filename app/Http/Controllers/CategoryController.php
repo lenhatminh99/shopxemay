@@ -14,9 +14,9 @@ class CategoryController extends Controller
     public function Authlogin(){
         $admin_id= Session::get('admin_id');
         if($admin_id){
-            Redirect::to('dashboard');
+            return Redirect::to('dashboard');
         }else{
-            Redirect::to('admin')->send();
+            return Redirect::to('admin')->send();
         }
     }
     //------------------------CATEGORY PRODUCTS-------------------------------
@@ -44,6 +44,7 @@ class CategoryController extends Controller
 
     //click submit them danh muc
     public function save_Category_Products(Request $request){
+        $this->Authlogin();
         $data = array();
         $data['category_name'] = $request -> category_products_name;
         $data['category_desc'] = $request -> category_products_desc;
@@ -54,6 +55,7 @@ class CategoryController extends Controller
     }
 
     public function update_Category_Products(Request $request, $category_products_id){
+        $this->Authlogin();
         $data = array();
         $data['category_name'] = $request -> category_products_name;
         $data['category_desc'] = $request -> category_products_desc;
@@ -64,16 +66,19 @@ class CategoryController extends Controller
     }
 
     public function delete_Category_Products($category_products_id){
+        $this->Authlogin();
         DB::table('tbl_category_products')->where('category_id', $category_products_id)->delete();
         return Redirect('list-category-products')->with('message','Xóa danh mục sản phẩm thành công');
     }
 
     public function active_Category_Products($category_products_id){
+        $this->Authlogin();
         DB::table('tbl_category_products')->where('category_id', $category_products_id)->update(['category_status' => 0]);
         return Redirect('/list-category-products');
     }
 
     public function unactive_Category_Products($category_products_id){
+        $this->Authlogin();
         DB::table('tbl_category_products')->where('category_id', $category_products_id)->update(['category_status' => 1]);
         return Redirect('/list-category-products');
     }

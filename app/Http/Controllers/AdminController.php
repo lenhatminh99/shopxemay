@@ -14,9 +14,9 @@ class AdminController extends Controller
     public function Authlogin(){
         $admin_id= Session::get('admin_id');
         if($admin_id){
-            Redirect::to('dashboard');
+            return Redirect::to('dashboard');
         }else{
-            Redirect::to('admin')->send();
+            return Redirect::to('admin')->send();
         }
     }
     public function index(){

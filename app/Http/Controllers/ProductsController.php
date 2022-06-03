@@ -33,6 +33,7 @@ class ProductsController extends Controller
 
     //click submit them san pham
     public function save_Products(Request $request){
+        $this->Authlogin();
         $data = array();
         $data['product_name'] = $request -> product_name;
         $data['category_id'] = $request -> cate_products;
@@ -64,6 +65,7 @@ class ProductsController extends Controller
 
     //edit products
      public function edit_Products($product_id){
+         $this->Authlogin();
         $cate_products = DB::table('tbl_category_products')->get();
         $edit_products = DB::table('tbl_products')->where('product_id', $product_id)->get();
         $manager_products = view('admin.edit_products')->with('edit_products', $edit_products)->with('cate_products', $cate_products);
@@ -71,6 +73,7 @@ class ProductsController extends Controller
     }
 
     public function update_Products(Request $request,$product_id){
+        $this->Authlogin();
         $data = array();
         $data['product_name'] = $request -> product_name;
         $data['category_id'] = $request -> cate_products;
@@ -91,15 +94,18 @@ class ProductsController extends Controller
     }
 
     public function delete_Products($product_id){
+        $this->Authlogin();
         DB::table('tbl_products')->where('product_id',$product_id)->delete();
         return Redirect::to('list-products')->with('message','Xóa sản phẩm thành công!');
     }
 
     public function active_Products($products_id){
+        $this->Authlogin();
         DB::table('tbl_products')->where('product_id', $products_id)->update(['product_status' => 0]);
         return Redirect('/list-products')->with('message','Cập nhật thành công!');
     }
     public function unactive_Products($products_id){
+        $this->Authlogin();
         DB::table('tbl_products')->where('product_id', $products_id)->update(['product_status' => 1]);
         return Redirect('/list-products')->with('message','Cập nhật thành công!');
     }
