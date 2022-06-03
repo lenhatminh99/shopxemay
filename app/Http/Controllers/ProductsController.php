@@ -15,9 +15,9 @@ class ProductsController extends Controller
     public function Authlogin(){
         $admin_id = Session::get('admin_id');
         if($admin_id){
-            Redirect::to('dashboard');
+            return Redirect::to('dashboard');
         }else{
-            Redirect::to('admin')->send();
+            return Redirect::to('admin')->send();
         }
     }
     //----------------------------------PRODUCTS-----------------------------------
@@ -40,7 +40,7 @@ class ProductsController extends Controller
         $data['product_price'] = $request -> product_price;
         $data['product_status'] = $request -> product_status;
 
-        $get_image =$request->file('product_image');
+        $get_image = $request->file('product_image');
         if($get_image){
             $new_image = rand(0,999).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/upload/product',$new_image);
