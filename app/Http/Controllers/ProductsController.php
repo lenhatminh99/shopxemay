@@ -110,4 +110,23 @@ class ProductsController extends Controller
         return Redirect('/list-products')->with('message','Cập nhật thành công!');
     }
 
+    //-------------------------------SHOW PRODUCT WHEN CLICK ON CATEGORY-------------------------------
+    public function show_Product($category_id){
+        $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','desc')->get();
+        $products = DB::table('tbl_category_products')
+        ->join('tbl_products','tbl_products.category_id','=','tbl_category_products.category_id')
+        ->where('tbl_category_products.category_id',$category_id)->get();
+
+        return view('pages.product.show_product')->with('products', $products)->with('category', $cate_products);
+    }
+    public function product_Details($product_id){
+        $list_products = DB::table('tbl_products')->where('product_status','1')->orderby(DB::raw('RAND()'))->limit(3)->get();
+        $admin=DB::table('tbl_admin')->get();
+        $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','desc')->get();
+        $products = DB::table('tbl_products')
+        ->join('tbl_category_products','tbl_category_products.category_id','=','tbl_products.category_id')
+        ->where('tbl_products.product_id',$product_id)->get();
+        return view('pages.product.product_details')->with('products', $products)->with('category', $cate_products)->with('admin',$admin)
+        ->with('list_products',$list_products);
+    }
 }

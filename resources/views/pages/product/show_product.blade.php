@@ -1,9 +1,8 @@
 @extends('layout')
 @section('content')
-    <div class="features_items">
-        <!--features_items-->
-        <h2 class="title text-center">Sản phẩm mới</h2>
-        @foreach ($list_products as $key => $product)
+    <div class="category_product">
+        <h2 class="title text-center">Sản phẩm</h2>
+        @foreach ($products as $key => $product)
             <a href="{{ URL::to('/chi-tiet-san-pham/' . $product->product_id) }}">
                 <div class="col-sm-4">
                     <div class="product-image-wrapper">
@@ -25,5 +24,4 @@
             </a>
         @endforeach
     </div>
-    <!--features_items-->
 @endsection

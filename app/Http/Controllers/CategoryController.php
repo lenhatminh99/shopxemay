@@ -82,4 +82,5 @@ class CategoryController extends Controller
         DB::table('tbl_category_products')->where('category_id', $category_products_id)->update(['category_status' => 1]);
         return Redirect('/list-category-products');
     }
+
 }

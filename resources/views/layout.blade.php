@@ -72,9 +72,9 @@
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="#"><i class="fa fa-user"></i> Tài khoản</a></li>
-                                <li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
+
                                 <li><a href="#"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                                <li><a href="/gio-hang"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
                                 <li><a href="#"><i class="fa fa-lock"></i> Đăng nhập</a></li>
                             </ul>
                         </div>
@@ -184,12 +184,13 @@
                     <div class="left-sidebar">
                         <h2>Danh mục sản phẩm</h2>
                         <div class="panel-group category-products" id="accordian">
+
                             @foreach ($category as $key => $cate)
                                 <!--category-products-->
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title"><a
-                                                href="{{ URL::to('/danh-muc-san-pham/' . $cate->category_id) }}">{{ $cate->category_name }}</a>
+                                                href="{{ URL::to('/show-san-pham/' . $cate->category_id) }}">{{ $cate->category_name }}</a>
                                         </h4>
                                     </div>
                                 </div>

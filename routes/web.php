@@ -23,11 +23,12 @@ use App\Http\Controllers\ProductsController;
 //User routes
 Route::get('/', [HomeController::class,'index']);
 
+//home
 Route::get('/trang-chu', [HomeController::class, 'index']);
-
-
-
-
+//show san pham khi click vo danh muc
+Route::get('/show-san-pham/{category_id}', [ProductsController::class, 'show_Product']);
+//chi tiet san pham
+Route::get('/chi-tiet-san-pham/{category_id}', [ProductsController::class, 'product_Details']);
 
 
 
