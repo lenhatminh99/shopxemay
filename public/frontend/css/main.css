@@ -7,12 +7,12 @@
 @import url(http://fonts.googleapis.com/css?family=Abel);
 
 
-html {background-image: url("/public/frontend/images/background.webp");}
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Oswald', sans-serif;
   position: relative;
   font-weight:400px;
+  background-image: url('../images/background.jpg');
 }
 
 ul li {
@@ -70,7 +70,7 @@ a#scrollUp i{
 **************************/
 
 .header_top {
-  background: none repeat scroll 0 0 #ffe4a7;
+  /* background: none repeat scroll 0 0 #ffe4a7; */
 }
 
 .contactinfo ul li:first-child{
