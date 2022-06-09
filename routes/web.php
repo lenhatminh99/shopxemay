@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CartController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +31,8 @@ Route::get('/trang-chu', [HomeController::class, 'index']);
 Route::get('/show-san-pham/{category_id}', [ProductsController::class, 'show_Product']);
 //chi tiet san pham
 Route::get('/chi-tiet-san-pham/{category_id}', [ProductsController::class, 'product_Details']);
-
-
+//gio hang
+Route::post('/save-cart', [CartController::class, 'save_Cart']);
 
 
 //Admin routes

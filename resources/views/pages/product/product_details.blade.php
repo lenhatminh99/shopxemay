@@ -46,18 +46,23 @@
                     <h2 style="font-size:30px; font-weight:bold;"> {{ $product->product_name }}</h2>
                     <p>Mã sản phẩm: {{ $product->product_id }}</p>
                     <img src="images/product-details/rating.png" alt="" />
-                    <span>
-                        <span>{{ $product->product_price }} VNĐ</span>
-                        <br />
-                        <label>Số lượng:</label>
-                        <input type="text" value="1" />
-                    </span>
-                    <p><b>Trạng thái:</b> Còn hàng</p>
-                    <p><b>Tình trạng sản phẩm:</b> New</p>
-                    <button style="margin: 10px 0 0 0;" type="button" class="btn btn-fefault cart">
-                        <i class="fa fa-shopping-cart"></i>
-                        Thêm vào giỏ hàng
-                    </button>
+                    <form method="post" action="{{ URL::to('/save-cart') }}">
+                        {{ csrf_field() }}
+                        <span>
+                            <span>{{ $product->product_price }} VNĐ</span>
+                            <br />
+                            <label>Số lượng:</label>
+                            <input name="qty" type="number" min="1" max="99" value="1" />
+                            <input name="productid_hidden" type="hidden" value="{{ $product->product_id }}" />
+                        </span>
+
+                        <p><b>Trạng thái:</b> Còn hàng</p>
+                        <p><b>Tình trạng sản phẩm:</b> New</p>
+                        <button style="margin: 10px 0 0 0;" type="submit" class="btn btn-fefault cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            Thêm vào giỏ hàng
+                        </button>
+                    </form>
                 </div>
                 <!--/product-information-->
             </div>
@@ -120,44 +125,48 @@
             <div class="carousel-inner">
                 <div class="item active">
                     @foreach ($list_products as $key => $product)
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img style="height:100px; width:150px;"
-                                            src="{{ URL::to('public/upload/product/' . $product->product_image) }}"
-                                            alt="" />
-                                        <h2>{{ $product->product_name }}</h2>
-                                        <p>{{ $product->product_price }} VNĐ</p>
-                                        <button type="button" class="btn btn-default add-to-cart"><i
-                                                class="fa fa-shopping-cart"></i>Chi
-                                            tiết sản
-                                            phẩm</button>
+                        <a href="{{ URL::to('/chi-tiet-san-pham/' . $product->product_id) }}" data-toggle="">
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img style="height:100px; width:150px;"
+                                                src="{{ URL::to('public/upload/product/' . $product->product_image) }}"
+                                                alt="" />
+                                            <h2>{{ $product->product_name }}</h2>
+                                            <p>{{ $product->product_price }} VNĐ</p>
+                                            <button type="button" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Chi
+                                                tiết sản
+                                                phẩm</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
                 <div class="item">
                     @foreach ($list_products as $key => $product)
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img style="height:100px; width:150px;"
-                                            src="{{ URL::to('public/upload/product/' . $product->product_image) }}"
-                                            alt="" />
-                                        <h2>{{ $product->product_name }}</h2>
-                                        <p>{{ $product->product_price }} VNĐ</p>
-                                        <button type="button" class="btn btn-default add-to-cart"><i
-                                                class="fa fa-shopping-cart"></i>Chi
-                                            tiết sản
-                                            phẩm</button>
+                        <a href="{{ URL::to('/chi-tiet-san-pham/' . $product->product_id) }}" data-toggle="">
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img style="height:100px; width:150px;"
+                                                src="{{ URL::to('public/upload/product/' . $product->product_image) }}"
+                                                alt="" />
+                                            <h2>{{ $product->product_name }}</h2>
+                                            <p>{{ $product->product_price }} VNĐ</p>
+                                            <button type="button" class="btn btn-default add-to-cart"><i
+                                                    class="fa fa-shopping-cart"></i>Chi
+                                                tiết sản
+                                                phẩm</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
             </div>
