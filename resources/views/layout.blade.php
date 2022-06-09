@@ -44,12 +44,11 @@
                     <div class="col-sm-6">
                         <div class="social-icons pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="https://www.facebook.com/flamingfury69"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <div class="">
+                                    <div class="search_box pull-right">
+                                        <input type="text" placeholder="Tìm kiếm sản phẩm" />
+                                    </div>
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -65,7 +64,7 @@
                     <div class="col-sm-4">
                         <div class="logo pull-left">
                             <a href="{{ URL::to('/trang-chu') }}"><img
-                                    src="{{ 'public/frontend/images/images.png' }}" alt="" /></a>
+                                    src="{{ 'public/frontend/images/logo.png' }}" alt="" /></a>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -83,21 +82,6 @@
             </div>
         </div>
         <!--/header-middle-->
-
-        <div class="header-bottom">
-            <!--header-bottom-->
-            <div class="container">
-                <div class="row">
-
-                    <div class="">
-                        <div class="search_box pull-right">
-                            <input type="text" placeholder="Tìm kiếm sản phẩm" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/header-bottom-->
     </header>
     <!--/header-->
 

@@ -7,6 +7,8 @@
 @import url(http://fonts.googleapis.com/css?family=Abel);
 
 
+html {background-image: url("/public/frontend/images/background.webp");}
+
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
@@ -68,7 +70,7 @@ a#scrollUp i{
 **************************/
 
 .header_top {
-  background: none repeat scroll 0 0 #F0F0E9;
+  background: none repeat scroll 0 0 #ffe4a7;
 }
 
 .contactinfo ul li:first-child{
@@ -259,11 +261,11 @@ a#scrollUp i{
   font-family: 'roboto';
   font-size: 12px;
   font-weight: 300;
-  height: 35px;
+  height: 39px;
   outline: medium none;
   padding-left: 10px;
-  width: 155px;
-  background-image: url(../images/home/searchicon.png);
+  width: 185px;
+  background-color: #fff;
   background-repeat: no-repeat;
   background-position: 130px;
 }
@@ -664,7 +666,7 @@ ul.sub-menu {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  margin: 0 auto 30px;
+  margin: 0 auto 10px;
   text-align: center;
   text-transform: uppercase;
   position: relative;
@@ -1542,16 +1544,18 @@ h2.title {
 }
 
 .breadcrumbs .breadcrumb li a:after {
-  content:"";
-  height:auto;
+  content:
+  "";
+  height:
+  auto;
   width: auto;
   border-width: 8px;
   border-style: solid;
-  border-color:transparent transparent transparent #FE980F;
+  border-color:
+  transparent transparent transparent #FE980F;
   position: absolute;
   top: 11px;
-  left:48px;
-
+  left: 78px;
 }
 
 .breadcrumbs .breadcrumb > li + li:before {
