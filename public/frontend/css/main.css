@@ -7,12 +7,15 @@
 @import url(http://fonts.googleapis.com/css?family=Abel);
 
 
+section .container{
+    background-color: rgba(0, 0, 0, 0.677);
+}
 
 body {
   font-family: 'Oswald', sans-serif;
   position: relative;
   font-weight:400px;
-  background-image: url('../images/background.jpg');
+  background-image: url('../images/background.jpg') !important;
 }
 
 ul li {
@@ -654,7 +657,7 @@ ul.sub-menu {
 }
 
 .category-products {
-  border: 1px solid #F7F7F0;
+
   margin-bottom: 35px;
   padding-bottom: 20px;
   padding-top: 15px;
@@ -664,17 +667,20 @@ ul.sub-menu {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  margin: 0 auto 10px;
+  margin: 20px 0px 15px 0px;
   text-align: center;
   text-transform: uppercase;
   position: relative;
   z-index:3;
+  background-color: rgba(0,0,0,0.5);
+  border: 0 none;
+  padding: 5px;
 }
 
 .left-sidebar h2:after, h2.title:after{
 	content: " ";
 	position: absolute;
-	border: 1px solid #f5f5f5;
+	/* border: 1px solid #f5f5f5; */
 	bottom:8px;
 	left: 0;
 	width: 100%;
@@ -708,18 +714,25 @@ h2.title:before{
 
 .category-products .panel {
 	background-color: #FFFFFF;
-	border: 0px;
-	border-radius: 0px;
+	border: 1px;
+	border-end-end-radius: 15px;
 	box-shadow:none;
 	margin-bottom: 0px;
 }
 
 .category-products .panel-default .panel-heading {
-  background-color: #FFFFFF;
-  border: 0 none;
-  color: #FFFFFF;
-  padding: 5px 20px;
+  text-align: center;
+  box-shadow: inset 0 0 0 0 #e89426;
+  color: #e89426;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+  border-end-end-radius: 15px;
 }
+
+.category-products:hover .panel-default:hover .panel-heading:hover {
+  box-shadow: inset 250px 0 0 0 #e89426;
+  color: white;
+}
+
 
 .category-products .panel-default .panel-heading .panel-title a {
   color: #696763;
@@ -841,7 +854,9 @@ h2.title {
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 30px;
-  position: relative;
+  background-color: rgba(0,0,0,0.5);
+  padding: 5px 20px;
+  /* position: relative; */
 }
 
 .product-image-wrapper{

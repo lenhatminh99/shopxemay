@@ -11,9 +11,8 @@
                                 <img height="100px" width="150px"
                                     src="{{ URL::to('public/upload/product/' . $product->product_image) }}" alt="" />
                                 <h2>{{ $product->product_price }} VNĐ</h2>
-                                <p style="font-size:17px; font-weight:bold;">{{ $product->product_name }}</p>
-                                <p class="cart"
-                                    style="font-size:17px; font-weight:bold; color:rgb(255, 255, 255); border-radius:15px;">
+                                <p style="color:#fff; font-size:17px; font-weight:bold;">{{ $product->product_name }}</p>
+                                <p class="cart" style="padding:10px; margin: 10px;">
                                     Chi
                                     tiết sản
                                     phẩm</p>
