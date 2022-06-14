@@ -33,6 +33,8 @@ Route::get('/show-san-pham/{category_id}', [ProductsController::class, 'show_Pro
 Route::get('/chi-tiet-san-pham/{category_id}', [ProductsController::class, 'product_Details']);
 //gio hang
 Route::post('/save-cart', [CartController::class, 'save_Cart']);
+Route::post('/add-cart-ajax', [CartController::class, 'add_Cart_Ajax']);
+Route::get('/gio-hang', [CartController::class, 'gio_Hang']);
 
 
 //Admin routes

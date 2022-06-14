@@ -21,6 +21,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            print_r(Session::get('cart'));
+                        @endphp
                         <tr>
                             <td class="cart_product">
                                 <a href=""><img src="images/cart/one.png" alt=""></a>

@@ -14,6 +14,7 @@
     <link href="{{ asset('public/frontend/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('public/frontend/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('public/frontend/css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/sweetalert.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ 'public/frontend/images/ico/favicon.ico' }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
         href="{{ 'public/frontend/images/ico/apple-touch-icon-144-precomposed.png' }}">
@@ -73,7 +74,8 @@
                                 <li><a href="#"><i class="fa fa-user"></i> Tài khoản</a></li>
 
                                 <li><a href="#"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                                <li><a href="/gio-hang"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+                                <li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i> Giỏ
+                                        hàng</a></li>
                                 <li><a href="#"><i class="fa fa-lock"></i> Đăng nhập</a></li>
                             </ul>
                         </div>
@@ -361,6 +363,37 @@
     <script src="{{ asset('public/frontend/js/price-range.js') }}"></script>
     <script src="{{ asset('public/frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('public/frontend/js/main.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/sweetalert.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.add-to-cart').click(function() {
+                var id = $(this).data('id_product');
+                var cart_product_id = $('.cart_product_id_' + id).val();
+                var cart_product_name = $('.cart_product_name_' + id).val();
+                var cart_product_image = $('.cart_product_image_' + id).val();
+                var cart_product_price = $('.cart_product_price_' + id).val();
+                var cart_product_qty = $('.cart_product_qty_' + id).val();
+                var _token = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url: '{{ url('/add-cart-ajax') }}',
+                    method: 'POST',
+                    data: {
+                        cart_product_id: cart_product_id,
+                        cart_product_name: cart_product_name,
+                        cart_product_image: cart_product_image,
+                        cart_product_price: cart_product_price,
+                        cart_product_qty: cart_product_qty,
+                        _token: _token
+                    },
+                    success: function(data) {
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
