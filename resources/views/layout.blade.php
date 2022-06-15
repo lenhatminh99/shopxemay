@@ -363,7 +363,7 @@
     <script src="{{ asset('public/frontend/js/price-range.js') }}"></script>
     <script src="{{ asset('public/frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('public/frontend/js/main.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/sweetalert.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -375,7 +375,6 @@
                 var cart_product_price = $('.cart_product_price_' + id).val();
                 var cart_product_qty = $('.cart_product_qty_' + id).val();
                 var _token = $('input[name="_token"]').val();
-
                 $.ajax({
                     url: '{{ url('/add-cart-ajax') }}',
                     method: 'POST',
@@ -387,8 +386,19 @@
                         cart_product_qty: cart_product_qty,
                         _token: _token
                     },
-                    success: function(data) {
-                        alert(data);
+                    success: function() {
+                        swal({
+                                title: "Đã thêm sản phẩm vào giỏ hàng",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
+                            },
+                            function() {
+                                window.location.href = "{{ url('/gio-hang') }}";
+                            });
                     }
                 });
             });

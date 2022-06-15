@@ -10,7 +10,7 @@
                             <div class="productinfo text-center">
                                 <img height="100px" width="150px"
                                     src="{{ URL::to('public/upload/product/' . $product->product_image) }}" alt="" />
-                                <h2>{{ $product->product_price }} VNĐ</h2>
+                                <h2>{{ number_format($product->product_price) }}đ</h2>
                                 <p style="color:#fff; font-size:17px; font-weight:bold;">{{ $product->product_name }}</p>
                                 <p class="cart" style="padding:10px; margin: 10px;">
                                     Chi

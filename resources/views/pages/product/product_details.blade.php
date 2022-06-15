@@ -49,7 +49,7 @@
                     <form method="post" action="{{ URL::to('/save-cart') }}">
                         {{ csrf_field() }}
                         <span>
-                            <span>{{ $product->product_price }} VNĐ</span>
+                            <span>{{ number_format($product->product_price) }}đ</span>
                             <br />
                             <label>Số lượng:</label>
                             <input name="qty" type="number" min="1" max="99" value="1" />

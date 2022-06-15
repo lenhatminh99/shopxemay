@@ -22,7 +22,7 @@
                                 <a href=" {{ URL::to('/chi-tiet-san-pham/' . $product->product_id) }}">
                                     <img height="100px" width="150px"
                                         src="{{ URL::to('public/upload/product/' . $product->product_image) }}" alt="" />
-                                    <h2>{{ $product->product_price }} VNĐ</h2>
+                                    <h2>{{ number_format($product->product_price) }}đ</h2>
                                     <p style="font-size:17px; font-weight:bold;">{{ $product->product_name }}</p>
                                     {{-- <p class="cart"
                                     style="font-size:17px; font-weight:bold; color:rgb(255, 255, 255); border-radius:15px;">

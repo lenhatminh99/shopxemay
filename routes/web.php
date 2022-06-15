@@ -22,22 +22,27 @@ use App\Http\Controllers\CartController;
 
 
 
-//User routes
+//-----------------------------------------------------------------User routes-------------------------------------------------------//
 Route::get('/', [HomeController::class,'index']);
 
 //home
 Route::get('/trang-chu', [HomeController::class, 'index']);
+
 //show san pham khi click vo danh muc
 Route::get('/show-san-pham/{category_id}', [ProductsController::class, 'show_Product']);
+
 //chi tiet san pham
 Route::get('/chi-tiet-san-pham/{category_id}', [ProductsController::class, 'product_Details']);
-//gio hang
+
+//gio hang - cart
 Route::post('/save-cart', [CartController::class, 'save_Cart']);
 Route::post('/add-cart-ajax', [CartController::class, 'add_Cart_Ajax']);
 Route::get('/gio-hang', [CartController::class, 'gio_Hang']);
+Route::post('/update-cart', [CartController::class, 'update_Cart']);
+Route::get('/delete-product-cart/{session_id}', [CartController::class, 'delete_Product_Cart']);
 
 
-//Admin routes
+//-----------------------------------------------------------------Admin routes-----------------------------------------------------//
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/dashboard', [AdminController::class, 'show_dashboard']);
 Route::get('/logout', [AdminController::class, 'logout']);
