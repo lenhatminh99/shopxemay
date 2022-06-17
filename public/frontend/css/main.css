@@ -16,6 +16,8 @@ body {
   position: relative;
   font-weight:400px;
   background-image: url('../images/background.jpg') !important;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 ul li {

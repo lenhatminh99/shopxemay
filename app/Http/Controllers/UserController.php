@@ -43,7 +43,7 @@ class UserController extends Controller
         $customer_email = $request->customer_email;
         $customer_password = md5($request->customer_password);
 
-        $result= DB::table('tbl_customers')->where('customer_email',$customer_email)->orwhere('customer_password',$customer_password)->first();
+        $result= DB::table('tbl_customers')->where('customer_email',$customer_email)->where('customer_password',$customer_password)->first();
 
         if($result){
             Session::put('customer_id',$result->customer_id);

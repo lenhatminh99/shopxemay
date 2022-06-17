@@ -65,7 +65,7 @@
                     <div class="col-sm-4">
                         <div class="logo pull-left">
                             <a href="{{ URL::to('/trang-chu') }}"><img
-                                    src="{{ 'public/frontend/images/logo.png' }}" alt="" /></a>
+                                    src="{{ asset('public/frontend/images/logo.png') }}" alt="" /></a>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -132,9 +132,9 @@
                                     <button type="button" class="btn btn-default get">Get it now</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{ 'public/frontend/images/wave.jpg' }}" class="girl img-responsive"
-                                        alt="" />
-                                    <img src="{{ 'public/frontend/images/pricing.png' }}" class="pricing"
+                                    <img src="{{ asset('public/frontend/images/wave.jpg') }}"
+                                        class="girl img-responsive" alt="" />
+                                    <img src="{{ asset('public/frontend/images/pricing.png') }}" class="pricing"
                                         alt="" />
                                 </div>
                             </div>
@@ -148,9 +148,9 @@
                                     <button type="button" class="btn btn-default get">Get it now</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{ 'public/frontend/images/girl2.jpg' }}" class="girl img-responsive"
-                                        alt="" />
-                                    <img src="{{ 'public/frontend/images/pricing.png' }}" class="pricing"
+                                    <img src="{{ asset('public/frontend/images/girl2.jpg') }}"
+                                        class="girl img-responsive" alt="" />
+                                    <img src="{{ asset('public/frontend/images/pricing.png') }}" class="pricing"
                                         alt="" />
                                 </div>
                             </div>
@@ -165,9 +165,9 @@
                                     <button type="button" class="btn btn-default get">Get it now</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{ 'public/frontend/images/girl3.jpg' }}" class="girl img-responsive"
-                                        alt="" />
-                                    <img src="{{ 'public/frontend/images/pricing.png' }}" class="pricing"
+                                    <img src="{{ asset('public/frontend/images/girl3.jpg') }}"
+                                        class="girl img-responsive" alt="" />
+                                    <img src="{{ asset('public/frontend/images/pricing.png') }}" class="pricing"
                                         alt="" />
                                 </div>
                             </div>
