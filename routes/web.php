@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -40,6 +41,15 @@ Route::post('/add-cart-ajax', [CartController::class, 'add_Cart_Ajax']);
 Route::get('/gio-hang', [CartController::class, 'gio_Hang']);
 Route::post('/update-cart', [CartController::class, 'update_Cart']);
 Route::get('/delete-product-cart/{session_id}', [CartController::class, 'delete_Product_Cart']);
+Route::get('/delete-all-product', [CartController::class, 'delete_All_Product']);
+
+//login - register
+Route::get('/login', [UserController::class, 'login']);
+Route::get('/register', [UserController::class, 'register']);
+Route::post('/register-customer', [UserController::class, 'register_Customer']);
+Route::post('/login-customer', [UserController::class, 'login_Customer']);
+Route::get('/logout-customer', [UserController::class, 'logout_Customer']);
+
 
 
 //-----------------------------------------------------------------Admin routes-----------------------------------------------------//

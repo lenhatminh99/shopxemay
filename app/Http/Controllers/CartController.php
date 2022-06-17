@@ -67,6 +67,13 @@ class CartController extends Controller
             return Redirect::back()->with('message', 'Xóa sản phẩm thất bại');
         }
     }
+    public function delete_All_Product(){
+        $cart = Session::get('cart');
+        if($cart==true){
+            Session::forget('cart'); //chi delete session card
+            return Redirect::back()->with('message', 'Xóa hết giỏ hàng thành công');
+        }
+    }
     public function update_Cart(Request $request){
         $data = $request->all();
         $cart = Session::get('cart');

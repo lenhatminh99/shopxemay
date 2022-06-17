@@ -76,7 +76,29 @@
                                 <li><a href="#"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
                                 <li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i> Giỏ
                                         hàng</a></li>
-                                <li><a href="#"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                                @if (Session::get('customer_name') == true)
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                            <span class="username"></span>
+                                            <?php
+                                            $fail_message = Session::get('customer_name');
+                                            if ($fail_message) {
+                                                echo $fail_message;
+                                            }
+                                            ?>
+                                            <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu extended logout">
+                                            <li><a href="#"><i class=" fa fa-suitcase"></i>Thông tin</a></li>
+                                            <li><a href="{{ URL::to('/logout-customer') }}"><i
+                                                        class="fa fa-key"></i>Đăng
+                                                    xuất</a></li>
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li><a href="{{ URL::to('/login') }}"><i class="fa fa-user"></i>
+                                            Đăng nhập</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -110,7 +132,7 @@
                                     <button type="button" class="btn btn-default get">Get it now</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{ 'public/frontend/images/girl1.jpg' }}" class="girl img-responsive"
+                                    <img src="{{ 'public/frontend/images/wave.jpg' }}" class="girl img-responsive"
                                         alt="" />
                                     <img src="{{ 'public/frontend/images/pricing.png' }}" class="pricing"
                                         alt="" />

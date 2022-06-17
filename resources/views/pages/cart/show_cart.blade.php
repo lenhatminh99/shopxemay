@@ -28,48 +28,67 @@
                             </tr>
                         </thead>
                         @php
+                            $tax = 0;
                             $total = 0;
+                            $total_after_tax = 0;
                         @endphp
-                        <tbody>
-                            @foreach (Session::get('cart') as $key => $cart)
-                                @php
-                                    $subtotal = $cart['product_price'] * $cart['product_qty'];
-                                    $total += $subtotal;
-                                @endphp
+                        @if (Session::get('cart') == true)
+                            <tbody>
+                                @foreach (Session::get('cart') as $key => $cart)
+                                    @php
+                                        $subtotal = $cart['product_price'] * $cart['product_qty'];
+                                        $total += $subtotal;
+                                        $tax = $total * 0.1;
+                                        $total_after_tax = $total + $tax;
+                                    @endphp
+                                    <tr>
+                                        <td class="cart_product">
+                                            <img src="{{ asset('/public/upload/product/' . $cart['product_image']) }}"
+                                                width="90" alt="{{ $cart['product_name'] }}" />
+                                        </td>
+                                        <td class="cart_description">
+                                            <h4><a href=""></a></h4>
+                                            <p>{{ $cart['product_name'] }}</p>
+                                        </td>
+                                        <td class="cart_price">
+                                            <p>{{ number_format($cart['product_price']) }}đ</p>
+                                        </td>
+                                        <td class="cart_quantity">
+                                            <div class="cart_quantity_button">
+                                                <input class="cart_quantity" type="number" min="1"
+                                                    name="cart_qty[{{ $cart['session_id'] }}]"
+                                                    value="{{ $cart['product_qty'] }}">
+                                            </div>
+                                        </td>
+                                        <td class="cart_total">
+                                            <p class="cart_total_price">{{ number_format($subtotal) }}đ</p>
+                                        </td>
+                                        <td class="cart_delete">
+                                            <a class="cart_quantity_delete"
+                                                href="{{ URL::to('/delete-product-cart/' . $cart['session_id']) }}"><i
+                                                    class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 <tr>
-                                    <td class="cart_product">
-                                        <img src="{{ asset('/public/upload/product/' . $cart['product_image']) }}"
-                                            width="90" alt="{{ $cart['product_name'] }}" />
+                                    <td>
+                                        <input type="submit" value="Cập nhật giỏ hàng" name="update_qty"
+                                            class="check_out">
                                     </td>
-                                    <td class="cart_description">
-                                        <h4><a href=""></a></h4>
-                                        <p>{{ $cart['product_name'] }}</p>
-                                    </td>
-                                    <td class="cart_price">
-                                        <p>{{ number_format($cart['product_price']) }}đ</p>
-                                    </td>
-                                    <td class="cart_quantity">
-                                        <div class="cart_quantity_button">
-                                            <input class="cart_quantity" type="number" min="1"
-                                                name="cart_qty[{{ $cart['session_id'] }}]"
-                                                value="{{ $cart['product_qty'] }}">
-                                        </div>
-                                    </td>
-                                    <td class="cart_total">
-                                        <p class="cart_total_price">{{ number_format($subtotal) }}đ</p>
-                                    </td>
-                                    <td class="cart_delete">
-                                        <a class="cart_quantity_delete"
-                                            href="{{ URL::to('/delete-product-cart/' . $cart['session_id']) }}"><i
-                                                class="fa fa-times"></i></a>
+                                    <td>
+                                        <a class="btn btn-default check_out"
+                                            href="{{ URL::to('/delete-all-product') }}">Xóa tất cả</a>
                                     </td>
                                 </tr>
-                            @endforeach
-                            <tr>
-                                <td>
-                                    <input type="submit" value="Cập nhật giỏ hàng" name="update_qty" class="check_out">
-                                </td>
-                            </tr>
+                            @else
+                                <tr>
+                                    <td>
+                                        @php
+                                            echo 'Giỏ hàng rỗng, hãy đi mua ngay cho mình vài chiếc xe nào!';
+                                        @endphp
+                                    </td>
+                                </tr>
+                        @endif
                         </tbody>
                 </form>
                 </table>
@@ -84,12 +103,12 @@
                     <div class="total_area">
                         <ul>
                             <li>Tổng tiền <span>{{ number_format($total) }}đ</span></li>
-                            <li>Thuế <span></span></li>
-                            <li>Phí vận chuyển <span>Free</span></li>
-                            <li>Tiền sau giảm <span>$61</span></li>
+                            <li>Thuế(10%) <span>{{ number_format($tax) }}đ</span></li>
+                            <li>Tổng tiền sau thuế <span>{{ number_format($total_after_tax) }}đ</span></li>
                         </ul>
-                        <a class="btn btn-default update" href="">Cập nhật giỏ hàng</a>
-                        <a class="btn btn-default check_out" href="">Thanh toán</a>
+                        {{-- <a class="btn btn-default update" href="">Cập nhật giỏ hàng</a> --}}
+                        <a class="btn btn-default check_out" href="{{ URL::to('/login-checkout') }}">Thanh
+                            toán</a>
                     </div>
                 </div>
             </div>
