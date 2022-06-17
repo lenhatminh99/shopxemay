@@ -28,15 +28,20 @@ class UserController extends Controller
     }
 
     public function register_Customer(Request $request){
+        $a = ($request->customer_password);
+        $b = ($request->password_nhaplai);
+        if($a==$b){
         $data= array();
         $data['customer_name'] = $request->customer_name;
         $data['customer_email'] = $request->customer_email;
-        $data['customer_password'] = md5($request->customer_password);
+        $data['customer_password'] =md5( $request->customer_password);
         $data['customer_phone'] = $request->customer_phone;
 
         $insert_customer=DB::table('tbl_customers')->insertGetId($data);
-
         return Redirect::to('/login')->with('message','Đăng ký thành công!');
+        }else{
+        return Redirect::to('/register')->with('message','Đăng ký thất bại!');
+        }
     }
 
     public function login_Customer(Request $request){

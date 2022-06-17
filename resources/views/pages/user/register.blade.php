@@ -34,11 +34,17 @@
                     <img src="public/frontend/login-resource/images/img-01.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" action=" {{ URL::to('/register-customer') }}" method="post">
+                <form class="login100-form validate-form" action=" {{ URL::to('/register-customer') }}"
+                    method="post">
                     {{ csrf_field() }}
                     <span class="  login100-form-title">
                         Đăng ký thành viên
                     </span>
+                    @if (session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                     <div class="wrap-input100 validate-input" data-validate="Vui lòng nhập tên của bạn">
                         <input class="input100" type="text" name="customer_name" placeholder="Họ tên">
                         <span class="focus-input100"></span>
@@ -62,14 +68,13 @@
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
                     </div>
-                    {{-- <div class="wrap-input100 validate-input" data-validate="Không được bỏ trống">
-                        <input class="input100" type="password" name="customer_password"
-                            placeholder="Nhập lại mật khẩu">
+                    <div class="wrap-input100 validate-input" data-validate="Không được bỏ trống">
+                        <input class="input100" type="password" name="password_nhaplai" placeholder="Nhập lại mật khẩu">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
-                    </div> --}}
+                    </div>
                     <div class="wrap-input100 validate-input" data-validate="Vui lòng nhập số điện thoại">
                         <input class="input100" type="text" name="customer_phone" placeholder="Số điện thoại">
                         <span class="focus-input100"></span>
