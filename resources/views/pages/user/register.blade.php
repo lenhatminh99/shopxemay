@@ -40,10 +40,20 @@
                     <span class="  login100-form-title">
                         Đăng ký thành viên
                     </span>
-                    @if (session('message'))
+                    {{-- @if (session('message'))
                         <div class="alert alert-success">
                             {{ session('message') }}
                         </div>
+                    @endif --}}
+                    @if ($errors->any())
+                        {{ implode(
+                            '',
+                            $errors->all('
+                                                <div>
+                                                :message
+                                                </div>
+                                                '),
+                        ) }}
                     @endif
                     <div class="wrap-input100 validate-input" data-validate="Vui lòng nhập tên của bạn">
                         <input class="input100" type="text" name="customer_name" placeholder="Họ tên">

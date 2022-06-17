@@ -28,19 +28,31 @@ class UserController extends Controller
     }
 
     public function register_Customer(Request $request){
-        $a = ($request->customer_password);
-        $b = ($request->password_nhaplai);
-        if($a==$b){
-        $data= array();
-        $data['customer_name'] = $request->customer_name;
-        $data['customer_email'] = $request->customer_email;
-        $data['customer_password'] =md5( $request->customer_password);
-        $data['customer_phone'] = $request->customer_phone;
+        // $a = ($request->customer_password);
+        // $b = ($request->password_nhaplai);
+        // if($a==$b){
+            $data= array();
+            $data['customer_name'] = $request->customer_name;
+            $data['customer_email'] = $request->customer_email;
+            $data['customer_password'] =md5( $request->customer_password);
+            $data['customer_phone'] = $request->customer_phone;
 
-        $insert_customer=DB::table('tbl_customers')->insertGetId($data);
-        return Redirect::to('/login')->with('message','Đăng ký thành công!');
+            // return Redirect::to('/login')->with('message','Đăng ký thành công!');
+        // }else{
+        //     // return Redirect::to('/register')->with('message','Mật khẩu không khớp!');
+        // }
+        $validated = $request->validate([
+            'customer_name' => 'required',
+            'customer_email' => 'required|email',
+            'customer_password' => 'min:6|required_with:password_nhaplai|same:password_nhaplai',
+            'password_nhaplai' => 'min:6',
+            'customer_phone' => 'nullable'
+        ]);
+        if(!$validated){
+            return Redirect::to('/register')->withErrors($validator);
         }else{
-        return Redirect::to('/register')->with('message','Đăng ký thất bại!');
+            $insert_customer=DB::table('tbl_customers')->insertGetId($data);
+            return Redirect::to('/login')->with('message','Đăng ký thành công!');
         }
     }
 
