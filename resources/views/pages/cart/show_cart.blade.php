@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <section id="cart_items">
-        <div class="container">
+        <div class="container2">
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="{{ URL::to('/') }}">Trang chủ</a></li>
@@ -55,8 +55,8 @@
                                         </td>
                                         <td class="cart_quantity">
                                             <div class="cart_quantity_button">
-                                                <input class="cart_quantity" type="number" min="1"
-                                                    name="cart_qty[{{ $cart['session_id'] }}]"
+                                                <input style="width: 60px;" class="cart_quantity" type="number"
+                                                    min="1" name="cart_qty[{{ $cart['session_id'] }}]"
                                                     value="{{ $cart['product_qty'] }}">
                                             </div>
                                         </td>
@@ -72,8 +72,7 @@
                                 @endforeach
                                 <tr>
                                     <td>
-                                        <input type="submit" value="Cập nhật giỏ hàng" name="update_qty"
-                                            class="check_out">
+                                        <input type="submit" value="Cập nhật giỏ hàng" name="update_qty" class="check_out">
                                     </td>
                                     <td>
                                         <a class="btn btn-default check_out"
@@ -97,7 +96,7 @@
     </section>
     <!--/#cart_items-->
     <section id="do_action">
-        <div class="container">
+        <div class="container2">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="total_area">
@@ -107,8 +106,13 @@
                             <li>Tổng tiền sau thuế <span>{{ number_format($total_after_tax) }}đ</span></li>
                         </ul>
                         {{-- <a class="btn btn-default update" href="">Cập nhật giỏ hàng</a> --}}
-                        <a class="btn btn-default check_out" href="{{ URL::to('/login-checkout') }}">Thanh
-                            toán</a>
+                        @if (Session::get('customer_id') == true && Session::get('shipping_id') == true)
+                            <a class="btn btn-default check_out" href="{{ URL::to('/payment') }}">Đặt hàng</a>
+                        @elseif (Session::get('customer_id') == true)
+                            <a class="btn btn-default check_out" href="{{ URL::to('/checkout') }}">Đặt hàng</a>
+                        @else
+                            <a class="btn btn-default check_out" href="{{ URL::to('/login') }}">Đặt hàng</a>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -48,20 +48,28 @@
                     <img src="images/product-details/rating.png" alt="" />
                     <form method="post" action="{{ URL::to('/save-cart') }}">
                         {{ csrf_field() }}
+                        <input type="hidden" value="{{ $product->product_id }}"
+                            class="cart_product_id_{{ $product->product_id }}">
+                        <input type="hidden" value="{{ $product->product_name }}"
+                            class="cart_product_name_{{ $product->product_id }}">
+                        <input type="hidden" value="{{ $product->product_image }}"
+                            class="cart_product_image_{{ $product->product_id }}">
+                        <input type="hidden" value="{{ $product->product_price }}"
+                            class="cart_product_price_{{ $product->product_id }}">
+                        <input type="hidden" value="1" class="cart_product_qty_{{ $product->product_id }}">
                         <span>
                             <span>{{ number_format($product->product_price) }}đ</span>
                             <br />
-                            <label>Số lượng:</label>
-                            <input name="qty" type="number" min="1" max="99" value="1" />
+                            {{-- <label>Số lượng:</label>
+                            <input name="qty" type="number" min="1" max="99" value="1" /> --}}
                             <input name="productid_hidden" type="hidden" value="{{ $product->product_id }}" />
                         </span>
 
                         <p><b>Trạng thái:</b> Còn hàng</p>
                         <p><b>Tình trạng sản phẩm:</b> New</p>
-                        <button style="margin: 10px 0 0 0;" type="submit" class="btn btn-fefault cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            Thêm vào giỏ hàng
-                        </button>
+                        <button type="button" class="btn btn-default add-to-cart"
+                            data-id_product="{{ $product->product_id }}" name="add-to-cart">Thêm vào
+                            giỏ</button>
                     </form>
                 </div>
                 <!--/product-information-->

@@ -91,4 +91,84 @@ class CartController extends Controller
                 return Redirect::back()->with('message', 'Cập nhật giỏ hàng thất bại');
         }
     }
+    public function checkout(){
+        $cate_products = DB::table('tbl_category_products')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+
+        return view('pages.cart.checkout')->with('category', $cate_products);
+    }
+    public function save_Checkout_Customer(Request $request){
+        $data= array();
+            $data['shipping_email'] = $request->shipping_email;
+            $data['shipping_name'] = $request->shipping_name;
+            $data['shipping_address'] =md5( $request->shipping_address);
+            $data['shipping_phone'] = $request->shipping_phone;
+            $data['shipping_notes'] = $request->shipping_notes;
+
+            $validated = $request->validate([
+            'shipping_name' => 'required',
+            'shipping_email' => 'required|email',
+            'shipping_phone' => 'required',
+            'shipping_address' => 'required',
+            'shipping_notes' => 'required'
+        ]);
+        if(!$validated){
+            return Redirect::to('/checkout')->withErrors($validated);
+        }else{
+            $shipping_id=DB::table('tbl_shipping')->insertGetId($data);
+            Session::put('shipping_id',$shipping_id);
+            return Redirect::to('/payment');
+        }
+    }
+    public function payment(){
+        $cate_products = DB::table('tbl_category_products')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+
+        return view('pages.cart.payment')->with('category', $cate_products);
+    }
+    public function save_payment_Customer(Request $request){
+        $tax = 0;
+        $total = 0;
+        $total_after_tax = 0;
+        foreach (Session::get('cart') as $key => $cart){
+            $subtotal = $cart['product_price'] * $cart['product_qty'];
+            $total += $subtotal;
+            $tax = $total * 0.1;
+            $total_after_tax = $total + $tax;
+        }
+
+        //insert payment - phuong thuc thanh toan
+        $payment_data= array();
+            $payment_data['payment_method'] = $request->payment_options;
+            $payment_data['payment_status'] = 'Dang cho xu ly';
+
+            $payment_id = DB::table('tbl_payment')->insertGetId($payment_data);
+
+        //insert order - don hang
+        $order_data= array();
+            $order_data['customer_id'] = Session::get('customer_id');
+            $order_data['shipping_id'] = Session::get('shipping_id');
+            $order_data['payment_id'] = $payment_id;
+            $order_data['order_total'] = $total_after_tax;
+            $order_data['order_status'] = 'Dang cho xu ly';
+
+            $order_id = DB::table('tbl_order')->insertGetId($order_data);
+
+        //insert order details - chi tiet don hang
+        $order_details_data= array();
+        foreach (Session::get('cart') as $key => $cart){
+            $order_details_data['order_id'] = $order_id;
+            $order_details_data['product_id'] = $cart['product_id'];
+            $order_details_data['product_name'] = $cart['product_name'];
+            $order_details_data['product_price'] = $cart['product_price'];
+            $order_details_data['product_sales_quantity'] = $cart['product_qty'];
+            $order_details_id = DB::table('tbl_order_details')->insert($order_details_data);
+        }
+        if($payment_data['payment_method']==1){
+            echo 'atm';
+        }elseif($payment_data['payment_method']==2){
+            echo 'tien mat';
+        }else{
+            echo ' ghi no';
+        }
+            // return Redirect::to('/payment');
+    }
 }

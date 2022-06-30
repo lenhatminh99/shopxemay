@@ -46,10 +46,10 @@ class UserController extends Controller
             'customer_email' => 'required|email',
             'customer_password' => 'min:6|required_with:password_nhaplai|same:password_nhaplai',
             'password_nhaplai' => 'min:6',
-            'customer_phone' => 'nullable'
+            'customer_phone' => 'required'
         ]);
         if(!$validated){
-            return Redirect::to('/register')->withErrors($validator);
+            return Redirect::to('/register')->withErrors($validated);
         }else{
             $insert_customer=DB::table('tbl_customers')->insertGetId($data);
             return Redirect::to('/login')->with('message','Đăng ký thành công!');

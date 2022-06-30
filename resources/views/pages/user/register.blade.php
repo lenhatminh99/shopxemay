@@ -46,14 +46,13 @@
                         </div>
                     @endif --}}
                     @if ($errors->any())
-                        {{ implode(
-                            '',
-                            $errors->all('
-                                                <div>
-                                                :message
-                                                </div>
-                                                '),
-                        ) }}
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                     @endif
                     <div class="wrap-input100 validate-input" data-validate="Vui lòng nhập tên của bạn">
                         <input class="input100" type="text" name="customer_name" placeholder="Họ tên">

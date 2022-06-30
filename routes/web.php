@@ -36,12 +36,20 @@ Route::get('/show-san-pham/{category_id}', [ProductsController::class, 'show_Pro
 Route::get('/chi-tiet-san-pham/{category_id}', [ProductsController::class, 'product_Details']);
 
 //gio hang - cart
-Route::post('/save-cart', [CartController::class, 'save_Cart']);
+// Route::post('/save-cart', [CartController::class, 'save_Cart']);
 Route::post('/add-cart-ajax', [CartController::class, 'add_Cart_Ajax']);
 Route::get('/gio-hang', [CartController::class, 'gio_Hang']);
+
 Route::post('/update-cart', [CartController::class, 'update_Cart']);
 Route::get('/delete-product-cart/{session_id}', [CartController::class, 'delete_Product_Cart']);
 Route::get('/delete-all-product', [CartController::class, 'delete_All_Product']);
+
+Route::get('/checkout', [CartController::class, 'checkout']);
+Route::post('/save-checkout-customer', [CartController::class, 'save_Checkout_Customer']);
+
+Route::get('/payment', [CartController::class, 'payment']);
+Route::post('/save-payment-customer', [CartController::class, 'save_payment_Customer']);
+
 
 //login - register
 Route::get('/login', [UserController::class, 'login']);

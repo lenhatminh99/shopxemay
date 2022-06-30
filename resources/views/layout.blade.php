@@ -71,12 +71,34 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-user"></i> Tài khoản</a></li>
-
-                                <li><a href="#"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                                <li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i> Giỏ
-                                        hàng</a></li>
-                                @if (Session::get('customer_name') == true)
+                                @if (Session::get('customer_id') == true && Session::get('shipping_id') == true)
+                                    <li><a href="{{ URL::to('/payment') }}"><i class="fa fa-crosshairs"></i> Thanh
+                                            toán</a></li>
+                                    <li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i> Giỏ
+                                            hàng</a></li>
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                            <span class="username"></span>
+                                            <?php
+                                            $fail_message = Session::get('customer_name');
+                                            if ($fail_message) {
+                                                echo $fail_message;
+                                            }
+                                            ?>
+                                            <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu extended logout">
+                                            <li><a href="#"><i class=" fa fa-suitcase"></i>Thông tin</a></li>
+                                            <li><a href="{{ URL::to('/logout-customer') }}"><i
+                                                        class="fa fa-key"></i>Đăng
+                                                    xuất</a></li>
+                                        </ul>
+                                    </li>
+                                @elseif (Session::get('customer_id') == true && Session::get('shipping_id') == false)
+                                    <li><a href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh
+                                            toán</a></li>
+                                    <li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i> Giỏ
+                                            hàng</a></li>
                                     <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                             <span class="username"></span>
@@ -96,6 +118,10 @@
                                         </ul>
                                     </li>
                                 @else
+                                    <li><a href="{{ URL::to('/login') }}"><i class="fa fa-crosshairs"></i> Thanh
+                                            toán</a></li>
+                                    <li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i> Giỏ
+                                            hàng</a></li>
                                     <li><a href="{{ URL::to('/login') }}"><i class="fa fa-user"></i>
                                             Đăng nhập</a></li>
                                 @endif
