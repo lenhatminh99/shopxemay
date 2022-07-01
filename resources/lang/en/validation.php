@@ -142,10 +142,48 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+    'attribute-name' => [
+        'rule-name' => 'custom-message',
     ],
+    'customer_email' => [
+        'unique' => 'Địa chỉ email này đã được đăng ký',
+        'email' => 'Vui lòng nhập vào một địa chỉ email',
+    ],
+    'customer_name' => [
+        'required' => 'Họ tên không được bỏ trống',
+    ],
+    'customer_password' => [
+        'min' => 'Mật khẩu tối thiểu 6 kí tự',
+        'required_with' => 'Vui lòng nhập lại mật khẩu',
+        'same' => 'Mật khẩu không khớp',
+    ],
+    'password_nhaplai' => [
+        'min' => '',
+    ],
+    'customer_phone' => [
+        'required' => 'Số điện thoại không được bỏ trống',
+    ],
+    'payment_method' => [
+        'required' => 'Vui lòng chọn phương thức thanh toán',
+    ],
+    'shipping_name' => [
+        'required' => 'Tên người nhận không được bỏ trống',
+    ],
+    'shipping_email' => [
+        'required' => 'Email người nhận không được bỏ trống',
+        'email' => 'Vui lòng nhập vào một địa chỉ email!',
+    ],
+    'shipping_phone' => [
+        'required' => 'Số điện thoại không được bỏ trống',
+    ],
+    'shipping_address' => [
+        'required' => 'Địa chỉ không được bỏ trống',
+    ],
+    'shipping_notes' => [
+        'required' => 'Vui lòng điền ghi chú đơn hàng',
+    ],
+
+],
 
     /*
     |--------------------------------------------------------------------------

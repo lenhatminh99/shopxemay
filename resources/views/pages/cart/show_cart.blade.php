@@ -108,8 +108,10 @@
                         {{-- <a class="btn btn-default update" href="">Cập nhật giỏ hàng</a> --}}
                         @if (Session::get('customer_id') == true && Session::get('shipping_id') == true)
                             <a class="btn btn-default check_out" href="{{ URL::to('/payment') }}">Đặt hàng</a>
-                        @elseif (Session::get('customer_id') == true)
+                        @elseif (Session::get('customer_id') == true && Session::get('cart') == true)
                             <a class="btn btn-default check_out" href="{{ URL::to('/checkout') }}">Đặt hàng</a>
+                        @elseif (Session::get('customer_id') == true && Session::get('cart') == false)
+                            <a class="btn btn-default check_out" href="{{ URL::to('/') }}">Đặt hàng</a>
                         @else
                             <a class="btn btn-default check_out" href="{{ URL::to('/login') }}">Đặt hàng</a>
                         @endif

@@ -43,7 +43,7 @@ class UserController extends Controller
         // }
         $validated = $request->validate([
             'customer_name' => 'required',
-            'customer_email' => 'required|email',
+            'customer_email' => 'required|unique:tbl_customers|email',
             'customer_password' => 'min:6|required_with:password_nhaplai|same:password_nhaplai',
             'password_nhaplai' => 'min:6',
             'customer_phone' => 'required'
@@ -65,6 +65,8 @@ class UserController extends Controller
         if($result){
             Session::put('customer_id',$result->customer_id);
             Session::put('customer_name',$result->customer_name);
+            Session::forget('cart');
+            Session::forget('shipping_id');
             return Redirect::to('/');
         }else{
             return Redirect::to('/login')->with('message','Vui lòng kiểm tra thông tin đăng nhập');
@@ -75,6 +77,8 @@ class UserController extends Controller
         $this->Authlogin();
         Session::put('customer_name',null);
         Session::put('customer_id',null);
+        Session::forget('cart');
+        Session::forget('shipping_id');
         return Redirect::to('/');
    	}
 }

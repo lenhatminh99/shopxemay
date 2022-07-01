@@ -451,6 +451,9 @@
                 });
             });
         });
+        // $('input.chk').on('change', function() {
+        //     $('input.chk').not(this).prop('checked', false);
+        // });
     </script>
 </body>
 

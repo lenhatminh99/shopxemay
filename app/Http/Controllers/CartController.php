@@ -12,6 +12,14 @@ session_start();
 
 class CartController extends Controller
 {
+    public function Authlogin(){
+        $admin_id= Session::get('admin_id');
+        if($admin_id){
+            return Redirect::to('dashboard');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
     public function gio_Hang(Request $request){
 
         $cate_products = DB::table('tbl_category_products')->where('category_status', '1')->orderby('category_id', 'desc')->get();
@@ -125,6 +133,7 @@ class CartController extends Controller
         return view('pages.cart.payment')->with('category', $cate_products);
     }
     public function save_payment_Customer(Request $request){
+        $cate_products = DB::table('tbl_category_products')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $tax = 0;
         $total = 0;
         $total_after_tax = 0;
@@ -140,7 +149,14 @@ class CartController extends Controller
             $payment_data['payment_method'] = $request->payment_options;
             $payment_data['payment_status'] = 'Dang cho xu ly';
 
+            // $validated = $request->validate([
+            // 'payment_method' => 'required',
+            // ]);
+            // if(!$validated){
+            // return Redirect::to('/payment')->withErrors($validated);
+            // }else{
             $payment_id = DB::table('tbl_payment')->insertGetId($payment_data);
+            // }
 
         //insert order - don hang
         $order_data= array();
@@ -165,10 +181,32 @@ class CartController extends Controller
         if($payment_data['payment_method']==1){
             echo 'atm';
         }elseif($payment_data['payment_method']==2){
-            echo 'tien mat';
+            Session::forget('cart');
+            Session::forget('shipping_id');
+            return view('pages.cart.handcash')->with('category', $cate_products);
         }else{
             echo ' ghi no';
         }
             // return Redirect::to('/payment');
+    }
+    public function manage_Order(){
+        $this->Authlogin();
+        $all_order = DB::table('tbl_order')
+        ->join('tbl_customers','tbl_customers.customer_id','=','tbl_order.customer_id')
+        ->select('tbl_order.*','tbl_customers.customer_name')
+        ->orderby('tbl_order.order_id','asc')
+        ->get();
+        $manager_order = view('admin.manage_order')->with('all_order', $all_order);
+        return view('admin_layout')->with('admin.manager_order', $manager_order);
+    }
+    public function details_Order($order_id){
+        $this->Authlogin();
+        $order_details_data = DB::table('tbl_order')
+        ->join('tbl_order_details','tbl_order_details.order_id','=','tbl_order.order_id')
+        ->select('tbl_order.*','tbl_order_details.*')
+        ->where('tbl_order_details.order_id',$order_id)
+        ->get();
+        $manager_details_order =  view('admin.details_order')->with('order_details_data',$order_details_data);
+        return view('admin_layout')->with('admin.manager_details_order', $manager_details_order);
     }
 }

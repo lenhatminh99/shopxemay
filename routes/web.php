@@ -95,3 +95,8 @@ Route::get('/unactive-products/{product_id}', [ProductsController::class, 'unact
 
 Route::post('/save-products', [ProductsController::class, 'save_Products']); //them san pham
 Route::post('/update-products/{products_id}', [ProductsController::class, 'update_Products']);
+
+
+//----------------------------------------------Admin - Order routes-----------------------------------------------------------//
+Route::get('/manage-order', [CartController::class, 'manage_Order']);
+Route::get('/details-order/{order_id}', [CartController::class, 'details_Order']);

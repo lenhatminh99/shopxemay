@@ -49,6 +49,15 @@
                                     ghi
                                     nợ</label>
                             </span>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <input type="submit" value="Thanh toán" name="send_order_place" class="check_out">
                         </div>
                     </form>
