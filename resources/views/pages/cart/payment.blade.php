@@ -37,15 +37,20 @@
                         {{ csrf_field() }}
                         <div class="payment-options">
                             <span>
-                                <label><input name="payment_options" value="1" type="checkbox"> Thanh toán bằng
+                                <label><input class="chk" name="payment_options" value="1" type="checkbox" checked>
+                                    Thanh toán bằng
                                     thẻ</label>
                             </span>
                             <span>
-                                <label><input name="payment_options" value="2" type="checkbox"> Thanh toán tiền
+                                <label><input class="chk" name="payment_options" value="2" type="checkbox"> Thanh
+                                    toán
+                                    tiền
                                     mặt</label>
                             </span>
                             <span>
-                                <label><input name="payment_options" value="3" type="checkbox"> Thanh toán bằng thẻ
+                                <label><input class="chk" name="payment_options" value="3" type="checkbox"> Thanh
+                                    toán
+                                    bằng thẻ
                                     ghi
                                     nợ</label>
                             </span>

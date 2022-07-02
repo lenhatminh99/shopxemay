@@ -13,7 +13,7 @@ html, body{
 	font-family: 'Roboto', sans-serif;
     font-size: 100%;
     overflow-x: hidden;
-    background: url(../images/bg.jpg) no-repeat 0px 0px;
+    background: url(../images/bg2.jpg) no-repeat 0px 0px;
 	background-size:cover;
 }
 body a{
@@ -2355,7 +2355,7 @@ ul.inbox-pagination li {
 }
 /*-- gallery --*/
 .w3layouts-main h2 {
-	color: #8b5c7e;
+	color: #ee13b0;
     font-size: 29px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -2365,7 +2365,6 @@ ul.inbox-pagination li {
 .w3layouts-main {
     width: 30%;
     margin:5em auto;
-    background:rgba(171, 119, 157, 0.27);
     padding: 42px 35px;
 }
 /*--//header--*/
@@ -2373,16 +2372,16 @@ ul.inbox-pagination li {
 input.ggg{
     width: 100%;
     padding: 15px 0px 15px 15px;
-    border: 1px solid #fff;
+    border: 1px solid #ee13b0;
     outline: none;
     font-size: 14px;
-    color: #fff;
+    color: #ffffff;
     margin: 14px 0px;
-	background: none;
+	background: rgba(247, 107, 188, 0.33);
 }
 .w3layouts-main span {
     font-size: 16px;
-    color: #fff;
+    color: #ee13b0;
     float: left;
     width: 32%;
 	margin-top: 8px;
@@ -2391,13 +2390,13 @@ input.ggg{
     font-size: 16px;
     float: right;
     width: 37%;
-	color: #fff;
+	color: #ee13b0;
     letter-spacing: 1px;
 	margin-top: 8px;
 	text-decoration:underline;
 }
 .w3layouts-main a {
-    color: #fff;
+    color: #ee13b0;
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
 	-o-transition:0.5s all;
@@ -2417,7 +2416,7 @@ input.ggg{
     font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    background: #f0bcb4;
+    background: #ee13b0;
     color: white;
     border: none;
     outline: none;

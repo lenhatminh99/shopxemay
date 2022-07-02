@@ -147,7 +147,7 @@ class CartController extends Controller
         //insert payment - phuong thuc thanh toan
         $payment_data= array();
             $payment_data['payment_method'] = $request->payment_options;
-            $payment_data['payment_status'] = 'Dang cho xu ly';
+            $payment_data['payment_status'] = 'Đang chờ xử lý';
 
             // $validated = $request->validate([
             // 'payment_method' => 'required',
@@ -164,7 +164,7 @@ class CartController extends Controller
             $order_data['shipping_id'] = Session::get('shipping_id');
             $order_data['payment_id'] = $payment_id;
             $order_data['order_total'] = $total_after_tax;
-            $order_data['order_status'] = 'Dang cho xu ly';
+            $order_data['order_status'] = 'Đang chờ xử lý';
 
             $order_id = DB::table('tbl_order')->insertGetId($order_data);
 
@@ -208,5 +208,15 @@ class CartController extends Controller
         ->get();
         $manager_details_order =  view('admin.details_order')->with('order_details_data',$order_details_data);
         return view('admin_layout')->with('admin.manager_details_order', $manager_details_order);
+    }
+    public function accept_Order($order_id){
+        DB::table('tbl_order')->where('order_id', $order_id)->update(['order_status' => 'Đã duyệt đơn hàng']);
+        DB::table('tbl_payment')->where('payment_id',$order_id)->update(['payment_status' => 'Chấp nhận thanh toán']);
+        return Redirect('/manage-order');
+    }
+    public function deny_Order($order_id){
+        DB::table('tbl_order')->where('order_id', $order_id)->update(['order_status' => 'Từ chối đơn hàng']);
+        DB::table('tbl_payment')->where('payment_id',$order_id)->update(['payment_status' => 'Từ chối thanh toán']);
+        return Redirect('/manage-order');
     }
 }

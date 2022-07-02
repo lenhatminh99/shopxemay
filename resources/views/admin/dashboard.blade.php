@@ -1,4 +1,4 @@
 @extends('admin_layout')
 @section('admin_content')
-    <h3>Chào mừng bạn đến với admin panel</h3>
+    <h3 style="color: white;">Chào mừng bạn đến với admin panel</h3>
 @endsection

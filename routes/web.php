@@ -100,3 +100,5 @@ Route::post('/update-products/{products_id}', [ProductsController::class, 'updat
 //----------------------------------------------Admin - Order routes-----------------------------------------------------------//
 Route::get('/manage-order', [CartController::class, 'manage_Order']);
 Route::get('/details-order/{order_id}', [CartController::class, 'details_Order']);
+Route::get('/accept-order/{order_id}', [CartController::class, 'accept_Order']);
+Route::get('/deny-order/{order_id}', [CartController::class, 'deny_Order']);
