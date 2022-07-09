@@ -45,6 +45,10 @@
                     <img src="images/product-details/new.jpg" class="newarrival" alt="" />
                     <h2 style="font-size:30px; font-weight:bold;"> {{ $product->product_name }}</h2>
                     <p>Mã sản phẩm: {{ $product->product_id }}</p>
+                    <div class="fb-share-button" data-href="http://localhost/shopxemay/chi-tiet-san-pham/"
+                        data-layout="button" data-size="large"><a target="_blank"
+                            href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fshopxemay%2Fchi-tiet-san-pham%2F&amp;src=sdkpreparse"
+                            class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                     <img src="images/product-details/rating.png" alt="" />
                     <form method="post" action="{{ URL::to('/save-cart') }}">
                         {{ csrf_field() }}

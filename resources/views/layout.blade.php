@@ -15,15 +15,15 @@
     <link href="{{ asset('public/frontend/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('public/frontend/css/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('public/frontend/css/sweetalert.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ 'public/frontend/images/ico/favicon.ico' }}">
+    <link rel="shortcut icon" href="{{ asset('public/frontend/images/ico/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
-        href="{{ 'public/frontend/images/ico/apple-touch-icon-144-precomposed.png' }}">
+        href="{{ asset('public/frontend/images/ico/apple-touch-icon-144-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114"
-        href="{{ 'public/frontend/images/ico/apple-touch-icon-114-precomposed.png' }}">
+        href="{{ asset('public/frontend/images/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72"
-        href="{{ 'public/frontend/images/ico/apple-touch-icon-72-precomposed.png' }}">
+        href="{{ asset('public/frontend/images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed"
-        href="{{ 'public/frontend/images/ico/apple-touch-icon-57-precomposed.png' }}">
+        href="{{ asset('public/frontend/images/ico/apple-touch-icon-57-precomposed.png') }}">
 </head>
 <!--/head-->
 
@@ -259,7 +259,8 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{ 'public/frontend/images/iframe1.png' }}" alt="" />
+                                        <img src="{{ asset('public/frontend/images/iframe1.png') }}"
+                                            alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -274,7 +275,8 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{ 'public/frontend/images/iframe2.png' }}" alt="" />
+                                        <img src="{{ asset('public/frontend/images/iframe2.png') }}"
+                                            alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -289,7 +291,8 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{ 'public/frontend/images/iframe3.png' }}" alt="" />
+                                        <img src="{{ asset('public/frontend/images/iframe3.png') }}"
+                                            alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -304,7 +307,8 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{ 'public/frontend/images/iframe4.png' }}" alt="" />
+                                        <img src="{{ asset('public/frontend/images/iframe4.png') }}"
+                                            alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -317,7 +321,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="address">
-                            <img src="{{ 'public/frontend/images/map.png' }}" alt="" />
+                            <img src="{{ asset('public/frontend/images/map.png') }}" alt="" />
                             <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
                         </div>
                     </div>
@@ -412,6 +416,10 @@
     <script src="{{ asset('public/frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('public/frontend/js/main.js') }}"></script>
     <script src="{{ asset('public/frontend/js/sweetalert.js') }}"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0"
+        nonce="4THpjHvE"></script>
+
 
     <script type="text/javascript">
         $(document).ready(function() {
