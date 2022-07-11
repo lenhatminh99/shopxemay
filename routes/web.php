@@ -30,6 +30,12 @@ Route::get('/', [HomeController::class,'index']);
 //home
 Route::get('/trang-chu', [HomeController::class, 'index']);
 
+//search
+Route::post('/tim-kiem', [HomeController::class, 'Search']);
+Route::get('/loc-theo-gia1', [HomeController::class, 'product_By_Price1']);
+Route::get('/loc-theo-gia2', [HomeController::class, 'product_By_Price2']);
+Route::get('/loc-theo-gia3', [HomeController::class, 'product_By_Price3']);
+Route::get('/loc-theo-gia4', [HomeController::class, 'product_By_Price4']);
 //show san pham khi click vo danh muc
 Route::get('/show-san-pham/{category_id}', [ProductsController::class, 'show_Product']);
 

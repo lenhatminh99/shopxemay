@@ -354,7 +354,9 @@ ul.sub-menu {
   background: #F0F0E9;
 }
 
-
+.footer-top{
+background: black;
+}
 .footer-top .container {
   border-bottom: 1px solid #E0E0DA;
   padding-bottom: 20px;

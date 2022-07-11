@@ -111,7 +111,7 @@
                     </ul>
                     <p>Mọi bình luận sai phạm sẽ bị khóa tài khoản!</p>
                     <p><b>Viết bình luận</b></p>
-                    <ul>
+                    {{-- <ul>
                         @foreach ($product as $key => $pro)
                             <li><a href=""><i class="fa fa-user"></i>{{ $pro->product_name }}</a></li>
                             <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
@@ -132,7 +132,7 @@
                         <button type="submit" class="btn btn-default pull-right">
                             Bình luận
                         </button>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
 

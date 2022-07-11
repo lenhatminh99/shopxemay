@@ -17,4 +17,51 @@ class HomeController extends Controller
 
         return view('pages.home')->with('category', $cate_products)->with('list_products', $list_products);
     }
+    public function Search(Request $request){
+        $keywords = $request->keywords_submit;
+        $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','desc')->get();
+        $search_product = DB::table('tbl_products')
+        ->where('product_status','1')
+        ->where('product_name','like','%'.$keywords.'%')
+        ->orwhere('product_desc','like','%'.$keywords.'%')
+        ->orwhere('product_price','like','%'.$keywords.'%')
+        ->get();
+        return view('pages.product.search')->with('category', $cate_products)->with('search_product', $search_product);
+    }
+    public function product_By_Price1(){
+        $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','asc')->get();
+        $mil_50 = DB::table('tbl_products')
+        ->where('product_status','1')
+        ->where('product_price','>=','10000000')
+        ->where('product_price','<=','50000000')
+        ->get();
+        return view('pages.product.price_filter.product_by_price')->with('category', $cate_products)->with('mil_50',$mil_50);
+    }
+    public function product_By_Price2( ){
+       $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','asc')->get();
+       $mil_100 = DB::table('tbl_products')
+        ->where('product_status','1')
+        ->where('product_price','>=','50000000')
+        ->where('product_price','<=','100000000')
+        ->get();
+        return view('pages.product.price_filter.product_by_price2')->with('category', $cate_products)->with('mil_100',$mil_100);
+    }
+    public function product_By_Price3( ){
+       $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','asc')->get();
+       $mil_500 = DB::table('tbl_products')
+        ->where('product_status','1')
+        ->where('product_price','>=','100000000')
+        ->where('product_price','<=','500000000')
+        ->get();
+        return view('pages.product.price_filter.product_by_price3')->with('category', $cate_products)->with('mil_500',$mil_500);
+    }
+    public function product_By_Price4( ){
+       $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','asc')->get();
+       $bil_1 = DB::table('tbl_products')
+        ->where('product_status','1')
+        ->where('product_price','>=','500000000')
+        ->where('product_price','<=','1000000000')
+        ->get();
+        return view('pages.product.price_filter.product_by_price4')->with('category', $cate_products)->with('bil_1',$bil_1);
+    }
 }

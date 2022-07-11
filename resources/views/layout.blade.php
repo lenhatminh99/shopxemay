@@ -46,9 +46,15 @@
                         <div class="social-icons pull-right">
                             <ul class="nav navbar-nav">
                                 <div class="">
-                                    <div class="search_box pull-right">
-                                        <input type="text" placeholder="Tìm kiếm sản phẩm" />
-                                    </div>
+                                    <form action="{{ URL::to('/tim-kiem') }}" method="post">
+                                        {{ csrf_field() }}
+                                        <div class="search_box pull-right">
+                                            <input name="keywords_submit" type="text"
+                                                placeholder="Tìm kiếm sản phẩm" />
+                                            <input style="margin-top: 0;color:black;"type="submit" name="search_items"
+                                                class="btn btn-primary btn-sm" value="Tìm kiếm">
+                                        </div>
+                                    </form>
                                 </div>
                             </ul>
                         </div>
@@ -120,7 +126,8 @@
                                 @else
                                     <li><a href="{{ URL::to('/login') }}"><i class="fa fa-crosshairs"></i> Thanh
                                             toán</a></li>
-                                    <li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i> Giỏ
+                                    <li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i>
+                                            Giỏ
                                             hàng</a></li>
                                     <li><a href="{{ URL::to('/login') }}"><i class="fa fa-user"></i>
                                             Đăng nhập</a></li>
@@ -234,6 +241,43 @@
                         </div>
                         <!--/category-products-->
                     </div>
+                    <div class="left-sidebar">
+                        <h2>Tìm theo mức giá</h2>
+                        <div class="panel-group category-products" id="accordian">
+                            <!--category-products-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <form action="{{ URL::to('/loc-theo-gia1') }}" method="get">
+                                        {{ csrf_field() }}
+                                        <input style="margin-top: 0;color:black;"type="submit" name="mil_50"
+                                            class="btn btn-primary btn-sm" value="Từ 10 đến 50 triệu">
+                                    </form>
+                                </div>
+                                <div class="panel-heading">
+                                    <form action="{{ URL::to('/loc-theo-gia2') }}" method="get">
+                                        {{ csrf_field() }}
+                                        <input style="margin-top: 0;color:black;"type="submit" name="mil_100"
+                                            class="btn btn-primary btn-sm" value="Từ 50 đến 100 triệu">
+                                    </form>
+                                </div>
+                                <div class="panel-heading">
+                                    <form action="{{ URL::to('/loc-theo-gia3') }}" method="get">
+                                        {{ csrf_field() }}
+                                        <input style="margin-top: 0;color:black;"type="submit" name="mil_500"
+                                            class="btn btn-primary btn-sm" value="Từ 100 đến 500 triệu">
+                                    </form>
+                                </div>
+                                <div class="panel-heading">
+                                    <form action="{{ URL::to('/loc-theo-gia4') }}" method="get">
+                                        {{ csrf_field() }}
+                                        <input style="margin-top: 0;color:black;"type="submit" name="bil_1"
+                                            class="btn btn-primary btn-sm" value="Từ 500 đến 1 tỉ">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/category-products-->
+                    </div>
                 </div>
 
                 <div class="col-sm-9 padding-right">
@@ -250,79 +294,78 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="companyinfo">
-                            <h2><span>e</span>-shopper</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                            <h2><span>Gia Lai Motobike</span></h2>
+                            <p>Shop xe máy Gia Lai</p>
                         </div>
                     </div>
                     <div class="col-sm-7">
                         <div class="col-sm-3">
                             <div class="video-gallery text-center">
-                                <a href="#">
+                                <a href="https://vi.wikipedia.org/wiki/%C4%90%E1%BB%99ng_c%C6%A1_hai_k%E1%BB%B3">
                                     <div class="iframe-img">
-                                        <img src="{{ asset('public/frontend/images/iframe1.png') }}"
-                                            alt="" />
+                                        <img src="{{ asset('public/frontend/images/f1.webp') }}" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
                                     </div>
                                 </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
+                                <p>Kiến thức xe</p>
+                                <h2>Xe 2 thì</h2>
                             </div>
                         </div>
 
                         <div class="col-sm-3">
                             <div class="video-gallery text-center">
-                                <a href="#">
+                                <a
+                                    href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj19aCzpPH4AhVrhMYKHU_AB8YQFnoECA0QAQ&url=https%3A%2F%2Fvi.wikipedia.org%2Fwiki%2FXe_ch%25E1%25BA%25A1y_%25C4%2591i%25E1%25BB%2587n&usg=AOvVaw2v-a6EH53qIdPT-eOMBCF6">
                                     <div class="iframe-img">
-                                        <img src="{{ asset('public/frontend/images/iframe2.png') }}"
-                                            alt="" />
+                                        <img src="{{ asset('public/frontend/images/f2.png') }}" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
                                     </div>
                                 </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
+                                <p>Kiến thức xe</p>
+                                <h2>Xe điện</h2>
                             </div>
                         </div>
 
                         <div class="col-sm-3">
                             <div class="video-gallery text-center">
-                                <a href="#">
+                                <a
+                                    href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj19aCzpPH4AhVrhMYKHU_AB8YQFnoECA0QAQ&url=https%3A%2F%2Fvi.wikipedia.org%2Fwiki%2FXe_ch%25E1%25BA%25A1y_%25C4%2591i%25E1%25BB%2587n&usg=AOvVaw2v-a6EH53qIdPT-eOMBCF6">
                                     <div class="iframe-img">
-                                        <img src="{{ asset('public/frontend/images/iframe3.png') }}"
-                                            alt="" />
+                                        <img src="{{ asset('public/frontend/images/f3.jpg') }}" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
                                     </div>
                                 </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
+                                <p>Kiến thức xe</p>
+                                <h2>Xe gắn máy</h2>
                             </div>
                         </div>
 
                         <div class="col-sm-3">
                             <div class="video-gallery text-center">
-                                <a href="#">
+                                <a
+                                    href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj19aCzpPH4AhVrhMYKHU_AB8YQFnoECA0QAQ&url=https%3A%2F%2Fvi.wikipedia.org%2Fwiki%2FXe_ch%25E1%25BA%25A1y_%25C4%2591i%25E1%25BB%2587n&usg=AOvVaw2v-a6EH53qIdPT-eOMBCF6">
                                     <div class="iframe-img">
-                                        <img src="{{ asset('public/frontend/images/iframe4.png') }}"
-                                            alt="" />
+                                        <img src="{{ asset('public/frontend/images/f4.jfif') }}" alt="" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
                                     </div>
                                 </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
+                                <p>Kiến thức xe</p>
+                                <h2>Xe 3 bánh</h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="address">
                             <img src="{{ asset('public/frontend/images/map.png') }}" alt="" />
-                            <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+                            <p>Đường Trường Sa, Thị Trấn Chư Sê, Tỉnh Gia Lai(Vietnam)</p>
                         </div>
                     </div>
                 </div>
@@ -334,31 +377,26 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Service</h2>
+                            <h2>Dịch vụ</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Online Help</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Order Status</a></li>
-                                <li><a href="#">Change Location</a></li>
-                                <li><a href="#">FAQ’s</a></li>
+                                <li><a href="https://www.facebook.com/flamingfury69">Hỗ trợ</a></li>
+                                <li><a href="https://www.facebook.com/flamingfury69">Thông tin liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Quock Shop</h2>
+                            <h2>Xem nhanh</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">T-Shirt</a></li>
-                                <li><a href="#">Mens</a></li>
-                                <li><a href="#">Womens</a></li>
-                                <li><a href="#">Gift Cards</a></li>
-                                <li><a href="#">Shoes</a></li>
+                                <li><a href="{{ URL::to('/loc-theo-gia1') }}">Xe giá rẻ</a></li>
+                                <li><a href="{{ URL::to('/loc-theo-gia4') }}">Xe mắc tiền</a></li>
+
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Policies</h2>
+                            <h2>Điều khoản</h2>
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="#">Terms of Use</a></li>
                                 <li><a href="#">Privecy Policy</a></li>
@@ -370,7 +408,7 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>About Shopper</h2>
+                            <h2>Về shop</h2>
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="#">Company Information</a></li>
                                 <li><a href="#">Careers</a></li>
@@ -382,12 +420,12 @@
                     </div>
                     <div class="col-sm-3 col-sm-offset-1">
                         <div class="single-widget">
-                            <h2>About Shopper</h2>
+                            <h2>Để lại SĐT tư vấn</h2>
                             <form action="#" class="searchform">
-                                <input type="text" placeholder="Your email address" />
-                                <button type="submit" class="btn btn-default"><i
+                                <input type="text" placeholder="Nhập số điện thoại" />
+                                <button style="position: absolute;"type="submit" class="btn btn-default"><i
                                         class="fa fa-arrow-circle-o-right"></i></button>
-                                <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                                <p>Bạn có tiền <br />Bạn có chúng tôi</p>
                             </form>
                         </div>
                     </div>
