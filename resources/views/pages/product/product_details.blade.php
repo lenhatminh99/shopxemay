@@ -111,15 +111,25 @@
                     </ul>
                     <p>Mọi bình luận sai phạm sẽ bị khóa tài khoản!</p>
                     <p><b>Viết bình luận</b></p>
+                    <ul>
+                        @foreach ($product as $key => $pro)
+                            <li><a href=""><i class="fa fa-user"></i>{{ $pro->product_name }}</a></li>
+                            <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
+                            <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2022</a></li>
+                        @endforeach
+                    </ul>
+                    <p>{{}}</p>
+                    <p><b>Viết bình luận</b></p>
 
-                    <form action="#">
+                    <form method="post" action="{{ URL::to('/binh-luan/' . $product->product_id) }}">
+                        {{ csrf_field() }}
                         <span>
-                            <input type="text" placeholder="Họ tên" />
-                            <input type="email" placeholder="Địa chỉ email" />
+                            <input type="text" name="customer_name" placeholder="Họ tên" />
+                            <input type="email" name="customer_email" placeholder="Địa chỉ email" />
                         </span>
-                        <textarea name=""></textarea>
+                        <textarea name="comment_text"></textarea>
                         <b>Đánh giá: </b> <img src="images/product-details/rating.png" alt="" />
-                        <button type="button" class="btn btn-default pull-right">
+                        <button type="submit" class="btn btn-default pull-right">
                             Bình luận
                         </button>
                     </form>

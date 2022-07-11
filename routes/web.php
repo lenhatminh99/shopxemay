@@ -8,7 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -35,6 +35,9 @@ Route::get('/show-san-pham/{category_id}', [ProductsController::class, 'show_Pro
 
 //chi tiet san pham
 Route::get('/chi-tiet-san-pham/{category_id}', [ProductsController::class, 'product_Details']);
+
+//binh luan
+Route::post('/binh-luan/{category_id}', [CommentController::class, 'comment_Text']);
 
 //gio hang - cart
 // Route::post('/save-cart', [CartController::class, 'save_Cart']);
