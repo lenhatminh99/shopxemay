@@ -14,7 +14,14 @@ class AdminController extends Controller
     public function Authlogin(){
         $admin_id= Session::get('admin_id');
         if($admin_id){
-            return Redirect::to('dashboard');
+            $all_order = DB::table('tbl_order')
+        ->join('tbl_customers','tbl_customers.customer_id','=','tbl_order.customer_id')
+        ->select('tbl_order.*','tbl_customers.customer_name')
+        ->orderby('tbl_order.order_id','asc')
+        ->get();
+        $manager_order = view('admin.dashboard')->with('all_order', $all_order);
+        return view('admin_layout')->with('admin.dashboard', $manager_order);
+            // return Redirect::to('dashboard');
         }else{
             return Redirect::to('admin')->send();
         }
@@ -24,7 +31,14 @@ class AdminController extends Controller
     }
     public function show_dashboard(){
         $this->Authlogin();
-        return view('admin.dashboard');
+        // return view('admin.dashboard');
+        $all_order = DB::table('tbl_order')
+        ->join('tbl_customers','tbl_customers.customer_id','=','tbl_order.customer_id')
+        ->select('tbl_order.*','tbl_customers.customer_name')
+        ->orderby('tbl_order.order_id','asc')
+        ->get();
+        $manager_order = view('admin.dashboard')->with('all_order', $all_order);
+        return view('admin_layout')->with('admin.dashboard', $manager_order);
     }
     public function login(Request $request){
    		$admin_mail = $request->admin_mail;
@@ -47,4 +61,15 @@ class AdminController extends Controller
         Session::put('admin_id',null);
         return Redirect::to('/admin');
    	}
+    public function show_Customer_Message(){
+        $customer_message = DB::table('tbl_sendmessage')->get();
+        return view('admin.customer_message')->with('customer_message',$customer_message);
+    }
+    public function save_Customer_Message(Request $request){
+        $customer_message = array();
+        $customer_message['message_content'] = $request->message_content;
+
+        DB::table('tbl_sendmessage')->insertGetId($customer_message);
+        return Redirect::to('/')->with('message','Để lại lời nhắn thành công');
+    }
 }

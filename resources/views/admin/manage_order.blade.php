@@ -52,6 +52,15 @@
                                  </td>
                              </tr>
                          @endforeach
+                         {{-- <?php
+                         $numItems = count($all_order);
+                         $i = 0;
+                         foreach ($all_order as $key => $order) {
+                             if (++$i === $numItems) {
+                                 echo $order->order_id;
+                             }
+                         }
+                         ?> --}}
                      </tbody>
                  </table>
              </div>

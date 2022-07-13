@@ -421,8 +421,15 @@
                     <div class="col-sm-3 col-sm-offset-1">
                         <div class="single-widget">
                             <h2>Để lại SĐT tư vấn</h2>
-                            <form action="#" class="searchform">
-                                <input type="text" placeholder="Nhập số điện thoại" />
+                            @if (session('message'))
+                                <div class="alert alert-success">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                            <form action="{{ URL::to('/save-customer-message') }}" method="post"
+                                class="searchform">
+                                {{ csrf_field() }}
+                                <input name="message_content" type="text" placeholder="Để lại lời nhắn" />
                                 <button style="position: absolute;"type="submit" class="btn btn-default"><i
                                         class="fa fa-arrow-circle-o-right"></i></button>
                                 <p>Bạn có tiền <br />Bạn có chúng tôi</p>

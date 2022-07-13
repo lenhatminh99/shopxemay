@@ -112,3 +112,7 @@ Route::get('/manage-order', [CartController::class, 'manage_Order']);
 Route::get('/details-order/{order_id}', [CartController::class, 'details_Order']);
 Route::get('/accept-order/{order_id}', [CartController::class, 'accept_Order']);
 Route::get('/deny-order/{order_id}', [CartController::class, 'deny_Order']);
+
+
+Route::get('/customer-message', [AdminController::class, 'show_Customer_Message']);
+Route::post('/save-customer-message', [AdminController::class, 'save_Customer_Message']);
