@@ -158,11 +158,10 @@
                             <div class="item active">
                                 <div class="col-sm-6">
                                     <h1>Xe Máy Gia Lai</h1>
-                                    <h2>Free E-Commerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor
-                                        incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                    <h2>Chất lượng đi đôi mức giá</h2>
+                                    <p>Cửa hàng phụ tùng xe máy Gia Lai chuyên phân phối sỉ và lẻ các phụ tùng xe gắn
+                                        máy như: vỏ xe, dầu nhớt, bộ áo, decal, bình xe acquy chính hãng,..v…v</p>
+                                    <button type="button" class="btn btn-default get">Mua ngay</button>
                                 </div>
                                 <div class="col-sm-6">
                                     <img src="{{ asset('public/frontend/images/wave.jpg') }}"
@@ -173,15 +172,14 @@
                             </div>
                             <div class="item">
                                 <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>100% Responsive Design</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor
-                                        incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                    <h1>Xe Máy Gia Lai</h1>
+                                    <h2>Chất lượng đi đôi mức giá</h2>
+                                    <p>Cửa hàng phụ tùng xe máy Gia Lai chuyên phân phối sỉ và lẻ các phụ tùng xe gắn
+                                        máy như: vỏ xe, dầu nhớt, bộ áo, decal, bình xe acquy chính hãng,..v…v</p>
+                                    <button type="button" class="btn btn-default get">Mua ngay</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{ asset('public/frontend/images/girl2.jpg') }}"
+                                    <img src="{{ asset('public/frontend/images/airblade.jpg') }}"
                                         class="girl img-responsive" alt="" />
                                     <img src="{{ asset('public/frontend/images/pricing.png') }}" class="pricing"
                                         alt="" />
@@ -190,15 +188,14 @@
 
                             <div class="item">
                                 <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>Free Ecommerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor
-                                        incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
+                                    <h1>Xe Máy Gia Lai</h1>
+                                    <h2>Chất lượng đi đôi mức giá</h2>
+                                    <p>Cửa hàng phụ tùng xe máy Gia Lai chuyên phân phối sỉ và lẻ các phụ tùng xe gắn
+                                        máy như: vỏ xe, dầu nhớt, bộ áo, decal, bình xe acquy chính hãng,..v…v</p>
+                                    <button type="button" class="btn btn-default get">Mua ngay</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{ asset('public/frontend/images/girl3.jpg') }}"
+                                    <img src="{{ asset('public/frontend/images/sym.jpg') }}"
                                         class="girl img-responsive" alt="" />
                                     <img src="{{ asset('public/frontend/images/pricing.png') }}" class="pricing"
                                         alt="" />
@@ -227,63 +224,64 @@
                     <div class="left-sidebar">
                         <h2>Danh mục sản phẩm</h2>
                         <div class="panel-group category-products" id="accordian">
-
                             @foreach ($category as $key => $cate)
                                 <!--category-products-->
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title"><a
-                                                href="{{ URL::to('/show-san-pham/' . $cate->category_id) }}">{{ $cate->category_name }}</a>
-                                        </h4>
-                                    </div>
+                                    <a href="{{ URL::to('/show-san-pham/' . $cate->category_id) }}">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title" style="color:orange;">
+                                                {{ $cate->category_name }}</h4>
+                                    </a>
                                 </div>
-                            @endforeach
+                                </a>
                         </div>
-                        <!--/category-products-->
+                        @endforeach
                     </div>
-                    <div class="left-sidebar">
-                        <h2>Tìm theo mức giá</h2>
-                        <div class="panel-group category-products" id="accordian">
-                            <!--category-products-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <form action="{{ URL::to('/loc-theo-gia1') }}" method="get">
-                                        {{ csrf_field() }}
-                                        <input style="margin-top: 0;color:black;"type="submit" name="mil_50"
-                                            class="btn btn-primary btn-sm" value="Từ 10 đến 50 triệu">
-                                    </form>
-                                </div>
-                                <div class="panel-heading">
-                                    <form action="{{ URL::to('/loc-theo-gia2') }}" method="get">
-                                        {{ csrf_field() }}
-                                        <input style="margin-top: 0;color:black;"type="submit" name="mil_100"
-                                            class="btn btn-primary btn-sm" value="Từ 50 đến 100 triệu">
-                                    </form>
-                                </div>
-                                <div class="panel-heading">
-                                    <form action="{{ URL::to('/loc-theo-gia3') }}" method="get">
-                                        {{ csrf_field() }}
-                                        <input style="margin-top: 0;color:black;"type="submit" name="mil_500"
-                                            class="btn btn-primary btn-sm" value="Từ 100 đến 500 triệu">
-                                    </form>
-                                </div>
-                                <div class="panel-heading">
-                                    <form action="{{ URL::to('/loc-theo-gia4') }}" method="get">
-                                        {{ csrf_field() }}
-                                        <input style="margin-top: 0;color:black;"type="submit" name="bil_1"
-                                            class="btn btn-primary btn-sm" value="Từ 500 đến 1 tỉ">
-                                    </form>
-                                </div>
+                    <!--/category-products-->
+                </div>
+                <div class="left-sidebar">
+                    <h2>Tìm theo mức giá</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-products-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <form action="{{ URL::to('/loc-theo-gia1') }}" method="get">
+                                    {{ csrf_field() }}
+                                    <input style="margin-top: 0;color:black;"type="submit" name="mil_50"
+                                        class="btn btn-primary btn-sm" value="Từ 10 đến 50 triệu">
+                                </form>
+                            </div>
+                            <div class="panel-heading">
+                                <form action="{{ URL::to('/loc-theo-gia2') }}" method="get">
+                                    {{ csrf_field() }}
+                                    <input style="margin-top: 0;color:black;"type="submit" name="mil_100"
+                                        class="btn btn-primary btn-sm" value="Từ 50 đến 100 triệu">
+                                </form>
+                            </div>
+                            <div class="panel-heading">
+                                <form action="{{ URL::to('/loc-theo-gia3') }}" method="get">
+                                    {{ csrf_field() }}
+                                    <input style="margin-top: 0;color:black;"type="submit" name="mil_500"
+                                        class="btn btn-primary btn-sm" value="Từ 100 đến 500 triệu">
+                                </form>
+                            </div>
+                            <div class="panel-heading">
+                                <form action="{{ URL::to('/loc-theo-gia4') }}" method="get">
+                                    {{ csrf_field() }}
+                                    <input style="margin-top: 0;color:black;"type="submit" name="bil_1"
+                                        class="btn btn-primary btn-sm" value="Từ 500 đến 1 tỉ">
+                                </form>
                             </div>
                         </div>
-                        <!--/category-products-->
                     </div>
-                </div>
-
-                <div class="col-sm-9 padding-right">
-                    @yield('content')
+                    <!--/category-products-->
                 </div>
             </div>
+
+            <div class="col-sm-9 padding-right">
+                @yield('content')
+            </div>
+        </div>
         </div>
     </section>
 
@@ -420,7 +418,7 @@
                     </div>
                     <div class="col-sm-3 col-sm-offset-1">
                         <div class="single-widget">
-                            <h2>Để lại SĐT tư vấn</h2>
+                            <h2>Để lại lời nhắn</h2>
                             @if (session('message'))
                                 <div class="alert alert-success">
                                     {{ session('message') }}

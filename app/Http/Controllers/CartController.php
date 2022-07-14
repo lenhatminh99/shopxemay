@@ -179,13 +179,19 @@ class CartController extends Controller
             $order_details_id = DB::table('tbl_order_details')->insert($order_details_data);
         }
         if($payment_data['payment_method']==1){
-            echo 'Chức năng thanh toán bằng thẻ atm đang hoàn thiện';
+            // echo 'Chức năng thanh toán bằng thẻ atm đang hoàn thiện';
+            Session::forget('cart');
+            Session::forget('shipping_id');
+            return view('pages.cart.handcash')->with('category', $cate_products);
         }elseif($payment_data['payment_method']==2){
             Session::forget('cart');
             Session::forget('shipping_id');
             return view('pages.cart.handcash')->with('category', $cate_products);
         }else{
-            echo ' Chức năng thanh toán bằng thẻ atm đang hoàn thiện';
+            // echo ' Chức năng thanh toán bằng thẻ ghi nợ đang hoàn thiện';
+            Session::forget('cart');
+            Session::forget('shipping_id');
+            return view('pages.cart.handcash')->with('category', $cate_products);
         }
             // return Redirect::to('/payment');
     }
