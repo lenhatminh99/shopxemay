@@ -34,6 +34,7 @@ class HomeController extends Controller
         ->where('product_status','1')
         ->where('product_price','>=','10000000')
         ->where('product_price','<=','50000000')
+        ->orderby('product_price','asc')
         ->get();
         return view('pages.product.price_filter.product_by_price')->with('category', $cate_products)->with('mil_50',$mil_50);
     }
@@ -43,6 +44,7 @@ class HomeController extends Controller
         ->where('product_status','1')
         ->where('product_price','>=','50000000')
         ->where('product_price','<=','100000000')
+        ->orderby('product_price','asc')
         ->get();
         return view('pages.product.price_filter.product_by_price2')->with('category', $cate_products)->with('mil_100',$mil_100);
     }
@@ -52,6 +54,7 @@ class HomeController extends Controller
         ->where('product_status','1')
         ->where('product_price','>=','100000000')
         ->where('product_price','<=','500000000')
+        ->orderby('product_price','asc')
         ->get();
         return view('pages.product.price_filter.product_by_price3')->with('category', $cate_products)->with('mil_500',$mil_500);
     }
@@ -61,6 +64,7 @@ class HomeController extends Controller
         ->where('product_status','1')
         ->where('product_price','>=','500000000')
         ->where('product_price','<=','1000000000')
+        ->orderby('product_price','asc')
         ->get();
         return view('pages.product.price_filter.product_by_price4')->with('category', $cate_products)->with('bil_1',$bil_1);
     }
