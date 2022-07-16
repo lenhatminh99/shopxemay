@@ -32,11 +32,12 @@
                 </div>
                 <div class="col-md-8 market-update-left">
                     <?php
-                    $OrderedTotal = count($all_order);
-                    $i = 0;
-                    foreach ($all_order as $key => $order) {
-                        if (++$i === $OrderedTotal) {
-                            echo '';
+                    $dem = 1;
+
+                    foreach ($clients as $key => $client) {
+                        $n = $client->customer_id;
+                        if ($n <= $n + 1) {
+                            $dem++;
                         }
                     }
                     ?>

@@ -28,6 +28,16 @@ class AdminController extends Controller
     public function index(){
        return view('admin_login');
     }
+    // public function show_dashboard(){
+    //     $this->Authlogin();
+    //     // return view('admin.dashboard');
+    //     $all_order = DB::table('tbl_order')
+    //     ->join('tbl_customers','tbl_customers.customer_id','=','tbl_order.customer_id')
+    //     ->select('tbl_order.*','tbl_customers.*')
+    //     ->get();
+    //     $manager_order = view('admin.dashboard')->with('all_order', $all_order);
+    //     return view('admin_layout')->with('admin.dashboard', $manager_order);
+    // }
     public function show_dashboard(){
         $this->Authlogin();
         // return view('admin.dashboard');
@@ -35,8 +45,8 @@ class AdminController extends Controller
         ->join('tbl_customers','tbl_customers.customer_id','=','tbl_order.customer_id')
         ->select('tbl_order.*','tbl_customers.*')
         ->get();
-        $manager_order = view('admin.dashboard')->with('all_order', $all_order);
-        return view('admin_layout')->with('admin.dashboard', $manager_order);
+        $clients = DB::table('tbl_customers')->get();
+        return view('admin.dashboard')->with('all_order', $all_order)->with('clients',$clients);
     }
     public function login(Request $request){
    		$admin_mail = $request->admin_mail;
