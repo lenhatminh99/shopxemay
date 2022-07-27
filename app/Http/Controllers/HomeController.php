@@ -8,15 +8,24 @@ use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
-
+use App\Models\Product;
+use Illuminate\Database\Query\Builder;
 class HomeController extends Controller
 {
-    public function index(){
-        $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','desc')->get();
-        $list_products = DB::table('tbl_products')->where('product_status','1')->orderby('product_id','desc')->limit(6)->get();
 
-        return view('pages.home')->with('category', $cate_products)->with('list_products', $list_products);
+    public function index(){
+        // $ds_sanpham = Product::all();
+        $ds_sanpham = Product::where('product_status','1')
+            ->orderby('product_id','desc')
+            ->paginate(6);
+        $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','desc')->get();
+        return view('pages.home')->with('category', $cate_products)->with('danhsachsanpham',$ds_sanpham);
     }
+    // public function index(){
+    //     $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','desc')->get();
+    //     $list_products = DB::table('tbl_products')->where('product_status','1')->orderby('product_id','desc')->limit(6)->get();
+    //     return view('pages.home')->with('category', $cate_products)->with('list_products', $list_products);
+    // }
     public function Search(Request $request){
         $keywords = $request->keywords_submit;
         $cate_products = DB::table('tbl_category_products')->where('category_status','1')->orderby('category_id','desc')->get();

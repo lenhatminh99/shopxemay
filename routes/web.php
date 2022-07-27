@@ -116,3 +116,8 @@ Route::get('/deny-order/{order_id}', [CartController::class, 'deny_Order']);
 
 Route::get('/customer-message', [AdminController::class, 'show_Customer_Message']);
 Route::post('/save-customer-message', [AdminController::class, 'save_Customer_Message']);
+
+
+
+//----test
+Route::get('/test', [CartController::class, 'test']);

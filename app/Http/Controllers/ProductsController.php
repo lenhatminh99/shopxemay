@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Session;
+use App\Models\Product;
+use App\Models\CategoryProduct;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -34,24 +36,35 @@ class ProductsController extends Controller
     //click submit them san pham
     public function save_Products(Request $request){
         $this->Authlogin();
-        $data = array();
+        $data = new Product;
+        // $data = array();
         $data['product_name'] = $request -> product_name;
         $data['category_id'] = $request -> cate_products;
         $data['product_desc'] = $request -> product_desc;
         $data['product_price'] = $request -> product_price;
         $data['product_status'] = $request -> product_status;
-
         $get_image = $request->file('product_image');
+        $validated = $request->validate([
+            'product_name' => 'required',
+            'product_desc' => 'required',
+            'product_price' => 'required',
+            'product_image' => 'required|mimes:jpeg,png,jpg,gif',
+        ]);
+        if(!$validated){
+            return Redirect::to('/add-products')->withErrors($validated);
+        }else{
         if($get_image){
             $new_image = rand(0,999).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/upload/product',$new_image);
             $data['product_image'] = $new_image;
-            DB::table('tbl_products')->insert($data);
+
+            $product_view = $data->save();
             return Redirect::to('add-products')->with('message', 'Thêm sản phẩm thành công!');
         }
-        $data['product_image'] = '';
-        DB::table('tbl_products')->insert($data);
-        return Redirect::to('add-products')->with('message', 'Thêm sản phẩm thành công!');
+            // $data['product_image'] = '';
+            // $data->save();
+            // return Redirect::to('add-products')->with('message', 'Thêm sản phẩm thành công!');
+        }
     }
 
     //list products

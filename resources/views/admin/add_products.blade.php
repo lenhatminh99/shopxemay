@@ -12,6 +12,15 @@
                              {{ session('message') }}
                          </div>
                      @endif
+                     @if ($errors->any())
+                         <div class="alert alert-danger">
+                             <ul>
+                                 @foreach ($errors->all() as $error)
+                                     <li>{{ $error }}</li>
+                                 @endforeach
+                             </ul>
+                         </div>
+                     @endif
                      <div class="position-center">
                          <form role="form" action="{{ URL::to('/save-products') }}" method="post"
                              enctype="multipart/form-data">

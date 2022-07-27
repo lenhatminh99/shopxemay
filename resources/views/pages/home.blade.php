@@ -3,7 +3,7 @@
     <div class="features_items">
         <!--features_items-->
         <h2 class="title text-center">Sản phẩm mới</h2>
-        @foreach ($list_products as $key => $product)
+        @foreach ($danhsachsanpham as $key => $product)
             <div class="col-sm-4">
                 <div class="product-image-wrapper">
                     <div class="single-products">
@@ -21,7 +21,8 @@
                                 <input type="hidden" value="1" class="cart_product_qty_{{ $product->product_id }}">
                                 <a href=" {{ URL::to('/chi-tiet-san-pham/' . $product->product_id) }}">
                                     <img height="100px" width="150px"
-                                        src="{{ URL::to('public/upload/product/' . $product->product_image) }}" alt="" />
+                                        src="{{ URL::to('public/upload/product/' . $product->product_image) }}"
+                                        alt="" />
                                     <h2>{{ number_format($product->product_price) }}đ</h2>
                                     <p style="font-size:17px; font-weight:bold;">{{ $product->product_name }}</p>
                                     {{-- <p class="cart"
@@ -39,6 +40,12 @@
                 </div>
             </div>
         @endforeach
+        <div class="pagination"
+            style="display: flex;
+                        width: 100%;
+                        justify-content: center;">
+            {{ $danhsachsanpham->links() }}
+        </div>
     </div>
     <!--features_items-->
 @endsection

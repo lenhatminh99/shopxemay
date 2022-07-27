@@ -207,6 +207,7 @@ class CartController extends Controller
     }
     public function details_Order($order_id){
         $this->Authlogin();
+        // $a=Product->categoyproduct($id);
         $order_details_data = DB::table('tbl_order')
         ->join('tbl_order_details','tbl_order_details.order_id','=','tbl_order.order_id')
         ->select('tbl_order.*','tbl_order_details.*')
@@ -224,5 +225,20 @@ class CartController extends Controller
         DB::table('tbl_order')->where('order_id', $order_id)->update(['order_status' => 'Từ chối đơn hàng']);
         DB::table('tbl_payment')->where('payment_id',$order_id)->update(['payment_status' => 'Từ chối thanh toán']);
         return Redirect('/manage-order');
+    }
+    public function test(){
+        $cate_products = DB::table('tbl_category_products')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        // $order_details_data = DB::table('tbl_order_details')
+        // ->select('tbl_order_details.*')
+        // ->get();
+        // $manager_details_order = view('test')->with('order_details_data',$order_details_data);
+        // return view('test')->with('layout.manager_details_order',$manager_details_order)->with('category', $cate_products);
+        $all_order = DB::table('tbl_order')
+        ->join('tbl_order_details','tbl_order_details.order_id','=','tbl_order.order_id')
+        ->select('tbl_order.*','tbl_order_details.*')
+        ->orderby('tbl_order.order_id','asc')
+        ->get();
+        $manager_order = view('admin.manage_order')->with('all_order', $all_order);
+        return view('test')->with('all_order', $all_order)->with('category', $cate_products);
     }
 }
