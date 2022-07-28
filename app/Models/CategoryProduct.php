@@ -15,8 +15,8 @@ class CategoryProduct extends Model
     protected $primaryKey = 'category_id';
     protected $table = 'tbl_category_products';
 
-    public function connectToProduct()
-    {
-        return $this->hasMany(Product::class, 'category_id');
-    }
+    // public function connectToProduct()
+    // {
+    //     return $this->hasMany(Product::class, 'category_id');
+    // }
 }

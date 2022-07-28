@@ -15,8 +15,8 @@ class Product extends Model
     protected $primaryKey = 'product_id';
     protected $table = 'tbl_products';
 
-    public function connectToCategoryProduct()
-    {
-        return $this->hasOne(CategoryProduct::class, 'category_id');
-    }
+    // public function connectToCategoryProduct()
+    // {
+    //     return $this->hasOne(CategoryProduct::class, 'category_id');
+    // }
 }
